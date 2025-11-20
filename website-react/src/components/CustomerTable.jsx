@@ -35,25 +35,36 @@ function CustomerTable() {
     }
     else {
         return (
-            <table className="customer-table">
-                <thead>
-                    <tr>
-                        <th>Date</th>
-                        <th>Name</th>
-                        <th>Number</th>
-                    </tr>
-                </thead>
-                <tbody> {
-                    customers.map((customer) => (
-                        <tr key={customer.id}>
-                            <td>{customer.created_at.substring(0, 10)}</td>
-                            <td>{customer.name}</td>
-                            <td>{customer.phone}</td>
+            <>
+                <h1>Customer Search</h1>
+                <div className="customer-search">
+                    <input type="search" placeholder="Search"></input>
+                    <select name="Sort">
+                        <option value="Name">Name</option>
+                        <option value="Number">Number</option>
+                    </select>
+                    <button>Search</button>
+                </div>
+                <table className="customer-table">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Name</th>
+                            <th>Number</th>
                         </tr>
-                    ))
-                }
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody> {
+                        customers.map((customer) => (
+                            <tr key={customer.id}>
+                                <td>{customer.created_at.substring(0, 10)}</td>
+                                <td>{customer.name}</td>
+                                <td>{customer.phone}</td>
+                            </tr>
+                        ))
+                    }
+                    </tbody>
+                </table>
+            </>
 
         );
     }

@@ -6,7 +6,7 @@ import About from './pages/About'
 function App() {
   console.log(window.location);
   return (
-    <div>
+    <>
       <NavBar></NavBar>
       <div className='main-body'>
         <Routes>
@@ -15,7 +15,7 @@ function App() {
           <Route path='/about' element={<About />} />
         </Routes>
       </div>
-    </div>
+    </>
   );
 }
 
