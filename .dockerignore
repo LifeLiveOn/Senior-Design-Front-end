@@ -1,0 +1,24 @@
+# Dependency directories
+website-react/node_modules
+
+# Build output (generated inside container; exclude any local stale builds)
+website-react/build
+
+# Logs
+**/*.log
+npm-debug.log*
+
+# VCS & metadata
+.git
+.gitignore
+
+# Docker artifacts
+Dockerfile
+.dockerignore
+
+# Tests (not needed in production image)
+website-react/src/**/*.test.*
+website-react/src/setupTests.js
+
+# Misc
+README.md
