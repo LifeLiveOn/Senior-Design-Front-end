@@ -65,11 +65,11 @@ function CustomerTable() {
                                 <tr className="expanded">
                                     <td colSpan={3}>
                                         <div className="houses">
-                                            <HouseCard></HouseCard>
-                                            <HouseCard></HouseCard>
-                                            <HouseCard></HouseCard>
-                                            <HouseCard></HouseCard>
-                                            <HouseCard></HouseCard>
+                                            <HouseCard id={0}></HouseCard>
+                                            <HouseCard id={1}></HouseCard>
+                                            <HouseCard id={2}></HouseCard>
+                                            <HouseCard id={3}></HouseCard>
+                                            <HouseCard id={4}></HouseCard>
                                         </div>
                                     </td>
                                 </tr>
@@ -85,9 +85,9 @@ function CustomerTable() {
                                 <tr className="expanded">
                                     <td colSpan={3}>
                                         <div className="houses">
-                                            <HouseCard></HouseCard>
-                                            <HouseCard></HouseCard>
-                                            <HouseCard></HouseCard>
+                                            <HouseCard id={5}></HouseCard>
+                                            <HouseCard id={6}></HouseCard>
+                                            <HouseCard id={7}></HouseCard>
                                         </div>
                                     </td>
                                 </tr>

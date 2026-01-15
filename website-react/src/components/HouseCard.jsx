@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
+import {Link} from "react-router-dom"
 
-function HouseCard() {
+function HouseCard({id}) {
     return (
-        <div className="houseCard">
+        <Link to={"/report/" + id} className="site-title">
+            <div className="houseCard">
             {
                 /*
                     Implement house card design here with fake test information.
@@ -18,6 +20,7 @@ function HouseCard() {
                 */
             }
         </div>
+        </Link>
     )
 }
 
