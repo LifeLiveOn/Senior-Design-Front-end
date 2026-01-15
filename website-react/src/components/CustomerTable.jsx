@@ -1,8 +1,20 @@
 import { useEffect, useState } from "react";
+import HouseCard from "../components/HouseCard";
 
 function CustomerTable() {
     const [customers, setCustomers] = useState([]);
     const [failed, setFailed] = useState(false);
+    const [customerId, setCustomerId] = useState(-1);
+
+    // Shows Houses
+    const toggleCustomerIndex = (id) => {
+        if (customerId === id) {
+            setCustomerId(-1);
+        }
+        else {
+            setCustomerId(id);
+        }
+    }
 
     // Load Customers
     useEffect(() => {
@@ -31,7 +43,61 @@ function CustomerTable() {
 
     // Display table
     if (failed) {
-        return <h1>Database connection failed</h1>;
+        // return <h1>Database connection failed</h1>;
+        return (
+            <>
+                <table className="customer-table">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Name</th>
+                            <th>Number</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr  className="clickable" onClick={() => toggleCustomerIndex(0)}>
+                            <td>43242</td>
+                            <td>fdsafdsa</td>
+                            <td>321321321</td>
+                        </tr>
+                        {
+                            customerId === 0 && (
+                                <tr className="expanded">
+                                    <td colSpan={3}>
+                                        <div className="houses">
+                                            <HouseCard></HouseCard>
+                                            <HouseCard></HouseCard>
+                                            <HouseCard></HouseCard>
+                                            <HouseCard></HouseCard>
+                                            <HouseCard></HouseCard>
+                                        </div>
+                                    </td>
+                                </tr>
+                            )
+                        }
+                        <tr  className="clickable" onClick={() => toggleCustomerIndex(1)}>
+                            <td>43242</td>
+                            <td>fdsafdsa</td>
+                            <td>321321321</td>
+                        </tr>
+                        {
+                            customerId === 1 && (
+                                <tr className="expanded">
+                                    <td colSpan={3}>
+                                        <div className="houses">
+                                            <HouseCard></HouseCard>
+                                            <HouseCard></HouseCard>
+                                            <HouseCard></HouseCard>
+                                        </div>
+                                    </td>
+                                </tr>
+                            )
+                        }
+                    </tbody>
+                </table>
+            </>
+
+        );
     }
     else {
         return (

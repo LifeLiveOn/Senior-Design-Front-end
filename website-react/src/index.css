@@ -112,16 +112,38 @@ input[type="search"]:focus, select:focus {
 }
 .customer-table thead tr {
   background-color: white;
-  border-bottom: 2px solid #D62311;
   text-align: left;
 }
-.customer-table tbody tr {
-  border-bottom: 1px solid lightgray;
-}
-.customer-table tbody tr:last-of-type {
+.customer-table tbody {
+  border-top: 2px solid #D62311;
   border-bottom: 2px solid #D62311;
 }
-.customer-table tbody tr:hover {
+.customer-table tr.clickable {
+  border-bottom: 1px solid lightgray;
+}
+.customer-table tr.clickable:hover {
   background-color: #F7F0E4;
   cursor: pointer;
+}
+.customer-table tr.expanded {
+  background-color: white;
+  border-bottom: 1px solid lightgray;
+  height: 200px;
+}
+.customer-table div.houses {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+}
+
+.houseCard {
+  background-color: white;
+  width: 200px;
+  height: 250px;
+  overflow: hidden;
+  border: 1px solid lightgray;
+  border-radius: 10px;
+}
+.houseCard:hover {
+  cursor: pointer;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
 }
