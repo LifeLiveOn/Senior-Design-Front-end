@@ -122,24 +122,24 @@ function CustomerTable() {
                     </thead>
                     <tbody> {
                         customers.map((customer) => (
-                            (
+                            //(
                                 <tr key={customer.id}>
                                     <td>{customer.created_at.substring(0, 10)}</td>
                                     <td>{customer.name}</td>
                                     <td>{customer.phone}</td>
                                 </tr>
-                            ),
-                            (
-                                customerId === customer.id && (
-                                    <tr className="expanded">
-                                        <td colSpan={3}>
-                                            <div className="houses">
-                                                <HouseCard id={customer.id}></HouseCard>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                )
-                            )
+                            //),
+                            // (
+                            //     customerId === customer.id && (
+                            //         <tr className="expanded">
+                            //             <td colSpan={3}>
+                            //                 <div className="houses">
+                            //                     <HouseCard id={customer.id}></HouseCard>
+                            //                 </div>
+                            //             </td>
+                            //         </tr>
+                            //     )
+                            // )
                         ))
                     }
                     </tbody>
