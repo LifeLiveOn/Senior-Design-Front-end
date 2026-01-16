@@ -20,7 +20,8 @@ function CustomerTable() {
     useEffect(() => {
         const loadCustomers = async () => {
             try {
-                const res = await fetch("http://localhost:8000/api/v1/customers/", {
+                // Use relative API base so it works behind nginx on 8000
+                const res = await fetch(`/api/v1/customers/`, {
                     credentials: "include"
                 });
 
