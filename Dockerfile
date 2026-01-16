@@ -7,7 +7,8 @@ WORKDIR /app
 
 # Install dependencies with better caching
 COPY website-react/package*.json ./
-RUN npm ci --no-audit --no-fund
+# Use legacy peer deps to avoid install failures from strict peer checks
+RUN npm ci --legacy-peer-deps --no-audit --no-fund
 
 # Copy source and build
 COPY website-react/ ./
