@@ -51,9 +51,9 @@ function CustomerTable() {
                     throw new Error(res.status);
 
                 const data = await res.json();
+                const filteredData = data.filter(house => house.customer === customerId);
                 
-                console.log(data);
-                setHouses(data);
+                setHouses(filteredData);
                 setHousesLoaded(true);
             }
             catch (err) {
@@ -81,11 +81,21 @@ function CustomerTable() {
 
     // Search
     const search = () => {
-        setFilteredCustomers(
-            customers.filter(customer => {
-                return customer.name.toLowerCase().includes(searchContent.toLowerCase())
-            })
-        );
+        if (searchType === 'Name')
+        {
+            setFilteredCustomers(
+                customers.filter(customer => {
+                    return customer.name.toLowerCase().includes(searchContent.toLowerCase())
+                })
+            );
+        }
+        else {
+            setFilteredCustomers(
+                customers.filter(customer => {
+                    return customer.phone.includes(searchContent);
+                })
+            );
+        }
     }
 
     const setSearchInput = (event) => {
