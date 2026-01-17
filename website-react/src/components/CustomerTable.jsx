@@ -20,7 +20,9 @@ function CustomerTable() {
     useEffect(() => {
         const loadCustomers = async () => {
             try {
-                const res = await fetch(`https://backend-42686524573.europe-west1.run.app/api/v1/customers/`);
+                const res = await fetch(`https://backend-42686524573.europe-west1.run.app/api/v1/customers/`, {
+                    credentials: "include"
+                });
 
                 if (!res.ok || res == null)
                     throw new Error(res.status);
