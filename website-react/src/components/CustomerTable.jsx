@@ -20,10 +20,7 @@ function CustomerTable() {
     useEffect(() => {
         const loadCustomers = async () => {
             try {
-                // Use relative API base so it works behind nginx on 8000
-                const res = await fetch(`/api/v1/customers/`, {
-                    credentials: "include"
-                });
+                const res = await fetch(`https://backend-42686524573.europe-west1.run.app/api/v1/customers/`);
 
                 if (!res.ok || res == null)
                     throw new Error(res.status);
@@ -44,61 +41,61 @@ function CustomerTable() {
 
     // Display table
     if (failed) {
-        // return <h1>Database connection failed</h1>;
-        return (
-            <>
-                <table className="customer-table">
-                    <thead>
-                        <tr>
-                            <th>Date</th>
-                            <th>Name</th>
-                            <th>Number</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr  className="clickable" onClick={() => toggleCustomerIndex(0)}>
-                            <td>43242</td>
-                            <td>fdsafdsa</td>
-                            <td>321321321</td>
-                        </tr>
-                        {
-                            customerId === 0 && (
-                                <tr className="expanded">
-                                    <td colSpan={3}>
-                                        <div className="houses">
-                                            <HouseCard id={0}></HouseCard>
-                                            <HouseCard id={1}></HouseCard>
-                                            <HouseCard id={2}></HouseCard>
-                                            <HouseCard id={3}></HouseCard>
-                                            <HouseCard id={4}></HouseCard>
-                                        </div>
-                                    </td>
-                                </tr>
-                            )
-                        }
-                        <tr  className="clickable" onClick={() => toggleCustomerIndex(1)}>
-                            <td>43242</td>
-                            <td>fdsafdsa</td>
-                            <td>321321321</td>
-                        </tr>
-                        {
-                            customerId === 1 && (
-                                <tr className="expanded">
-                                    <td colSpan={3}>
-                                        <div className="houses">
-                                            <HouseCard id={5}></HouseCard>
-                                            <HouseCard id={6}></HouseCard>
-                                            <HouseCard id={7}></HouseCard>
-                                        </div>
-                                    </td>
-                                </tr>
-                            )
-                        }
-                    </tbody>
-                </table>
-            </>
+        return <h1>Database connection failed</h1>;
+        // return (
+        //     <>
+        //         <table className="customer-table">
+        //             <thead>
+        //                 <tr>
+        //                     <th>Date</th>
+        //                     <th>Name</th>
+        //                     <th>Number</th>
+        //                 </tr>
+        //             </thead>
+        //             <tbody>
+        //                 <tr  className="clickable" onClick={() => toggleCustomerIndex(0)}>
+        //                     <td>43242</td>
+        //                     <td>fdsafdsa</td>
+        //                     <td>321321321</td>
+        //                 </tr>
+        //                 {
+        //                     customerId === 0 && (
+        //                         <tr className="expanded">
+        //                             <td colSpan={3}>
+        //                                 <div className="houses">
+        //                                     <HouseCard id={0}></HouseCard>
+        //                                     <HouseCard id={1}></HouseCard>
+        //                                     <HouseCard id={2}></HouseCard>
+        //                                     <HouseCard id={3}></HouseCard>
+        //                                     <HouseCard id={4}></HouseCard>
+        //                                 </div>
+        //                             </td>
+        //                         </tr>
+        //                     )
+        //                 }
+        //                 <tr  className="clickable" onClick={() => toggleCustomerIndex(1)}>
+        //                     <td>43242</td>
+        //                     <td>fdsafdsa</td>
+        //                     <td>321321321</td>
+        //                 </tr>
+        //                 {
+        //                     customerId === 1 && (
+        //                         <tr className="expanded">
+        //                             <td colSpan={3}>
+        //                                 <div className="houses">
+        //                                     <HouseCard id={5}></HouseCard>
+        //                                     <HouseCard id={6}></HouseCard>
+        //                                     <HouseCard id={7}></HouseCard>
+        //                                 </div>
+        //                             </td>
+        //                         </tr>
+        //                     )
+        //                 }
+        //             </tbody>
+        //         </table>
+        //     </>
 
-        );
+        // );
     }
     else {
         return (
