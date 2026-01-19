@@ -149,7 +149,6 @@ input[type="radio"] {
 .customer-table tr.expanded {
   background-color: white;
   border-bottom: 1px solid lightgray;
-  height: 200px;
 }
 .customer-table div.houses {
   display: grid;
@@ -175,7 +174,7 @@ input[type="radio"] {
   width: 800px;
   max-width: 80%;
   border: 2px solid #D62311;
-  border-radius: 20px;
+  border-radius: 10px;
 
   position: fixed;
   top: 50%;
@@ -215,9 +214,19 @@ input[type="radio"] {
   border-bottom: 1px solid lightgray;
   padding: 0 24px 24px 24px;
 }
+.inputHeader {
+  display: flex;
+  align-content: center;
+  align-items: center;
+}
 
 .buttonContainer {
   display: flex;
   justify-content: center;
   padding: 16px;
+}
+
+.sliderValue {
+  color: #D62311;
+  margin: 0 8px;
 }

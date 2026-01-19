@@ -1,6 +1,12 @@
 import { useState } from "react";
 
 function ModelSettings({show, closeSettings}) {
+    const [threshold, setThreshold] = useState(80);
+
+    const changeThresholdValue = (event) => {
+        setThreshold(event.target.value);
+    }
+
     if (show) {
         return (
             <>
@@ -27,8 +33,11 @@ function ModelSettings({show, closeSettings}) {
                         </select>
                     </div>
                     <div className="inputContainer">
-                        <h4>Threshold:</h4>
-                        <input type="range" min={0} max={100} defaultValue={80}></input>
+                        <div className="inputHeader">
+                            <h4>Threshold: </h4>
+                            <p className="sliderValue">{threshold + "%"}</p>
+                        </div>
+                        <input type="range" min={0} max={100} defaultValue={80} onInput={changeThresholdValue}/>
                     </div>
                     <div className="buttonContainer">
                         <button>Generate</button>
