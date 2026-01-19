@@ -35,6 +35,20 @@ button:active {
   background-color: #5f0f0b;
 }
 
+button.close {
+  background-color: transparent;
+  color: white;
+  padding: 8px 24px;
+  font-size: 32px;
+  font-weight: normal;
+}
+button.close:hover {
+  cursor: pointer;
+}
+button.close:active {
+  color: lightgray;
+}
+
 input[type="search"], select {
   border: 1px solid lightgray;
   border-bottom: 1px solid #403C3C;
@@ -46,6 +60,13 @@ input[type="search"]:hover, select:hover {
 input[type="search"]:focus, select:focus {
   background-color: #F7F0E4;
   outline: none;
+}
+input[type="range"] {
+  accent-color: #D62311;
+  width: 100%;
+}
+input[type="radio"] {
+  accent-color: #D62311;
 }
 
 .site-title {
@@ -146,4 +167,57 @@ input[type="search"]:focus, select:focus {
 .houseCard:hover {
   cursor: pointer;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
+}
+
+.modelSettings {
+  background-color: white;
+  overflow: hidden;
+  width: 800px;
+  max-width: 80%;
+  border: 2px solid #D62311;
+  border-radius: 20px;
+
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+}
+.modelSettings div.header {
+  background-color: #D62311;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid lightgray;
+}
+.modelSettings div.header h2 {
+  padding: 8px 24px;
+  margin: 0;
+
+}
+.modelSettings div.body {
+  margin: 0;
+}
+.modalBackground {
+  background-color: rgba(0, 0, 0, 0.4);
+  height: 100%;
+  width: 100%;
+
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9;
+}
+
+.inputContainer {
+  border-bottom: 1px solid lightgray;
+  padding: 0 24px 24px 24px;
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: center;
+  padding: 16px;
 }
