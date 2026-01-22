@@ -14,7 +14,7 @@ function CustomerTable() {
     useEffect(() => {
         const loadCustomers = async () => {
             try {
-                const res = await fetch("https://backend-42686524573.europe-west1.run.app/api/v1/customers/", { //http://localhost:8000/api/v1/customers/
+                const res = await fetch("http://localhost:8000/api/v1/customers/", { //https://backend-42686524573.europe-west1.run.app/api/v1/customers/
                     credentials: "include"
                 });
 
