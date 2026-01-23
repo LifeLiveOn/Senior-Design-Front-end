@@ -2,25 +2,50 @@ import { useEffect, useState } from "react";
 import {Link} from "react-router-dom"
 
 function HouseCard({customerId, houseId}) {
+
     return (
         <Link to={"/report/" + customerId + "/" + houseId} className="site-title">
-            <div className="houseCard">
-                {
-                    /*
-                        Implement house card design here with fake test information.
-                        (outside of these brackets)
+        <div className="houseCard houseCardNew">
+            {/*number + address */}
+            <div className="hcTop">
+                <div className="hcBadge">1</div>
 
-                        On the website, when you click a customer in the customer table,
-                        these cards will appear.
-
-                        To change the style (css) open "index.css" and go to ".houseCard".
-                        
-                        If you want to change the layout of the cards (parent div) go
-                        to index.css and change ".customer-table div.houses".
-                    */
-                }
+                <div className="hcTitleWrap">
+                    <div className="hcTitle">12345 Mailman Dr</div>
+                </div>
             </div>
-        </Link>
+
+            {/* damage type */}
+            <div className="hcTypes">
+                <span className="hcType">Hail</span>
+                <span className="hcType">Wind</span>
+            </div>
+
+            {/* stats */}
+            <div className="hcStats">
+                <div className="hcStat">
+                    <div className="hcStatValue">Moderate</div>
+                    <div className="hcStatLabel">Damage</div>
+                </div>
+
+            <div className="hcStat">
+                <div className="hcStatValue">4/5</div>
+                <div className="hcStatLabel">Severity</div>
+            </div>
+
+            <div className="hcStat">
+                <div className="hcStatValue">0</div>
+                <div className="hcStatLabel">Photos</div>
+            </div>
+            </div>
+
+            {/* main point description */}
+            <div className="hcDescription">damage found on backside roof</div>
+
+            {/* Bottom hint */}
+            <div className="hcReport">Click to view report →</div>
+        </div>
+    </Link>
     )
 }
 
