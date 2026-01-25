@@ -1,43 +1,41 @@
 import { useEffect, useState } from "react";
 import HouseCard from "../components/HouseCard";
+import NewCustomer from "./NewCustomer";
+import NewHouse from "./NewHouse";
 
 function CustomerTable() {
     const [customers, setCustomers] = useState([]);
     const [filteredCustomers, setFilteredCustomers] = useState([]);
     const [customersLoaded, setCustomersLoaded] = useState(false);
     const [failed, setFailed] = useState(false);
+    const [showNewCustomer, setShowNewCustomer] = useState(false);
+    const [showNewHouse, setShowNewHouse] = useState(false);
     const [customerId, setCustomerId] = useState(-1);
     const [searchContent, setSearchContent] = useState("");
     const [searchType, setSearchType] = useState("Name");
-    
-    // Load Customers
-    useEffect(() => {
-        const loadCustomers = async () => {
-            try {
-                const res = await fetch("https://backend-42686524573.europe-west1.run.app/api/v1/customers/", { //https://backend-42686524573.europe-west1.run.app/api/v1/customers/
-                    credentials: "include"
-                });
 
-                if (!res.ok || res == null)
-                    throw new Error(res.status);
+    const loadCustomers = async () => {
+        try {
+            const res = await fetch("https://backend-42686524573.europe-west1.run.app/api/v1/customers/", { //https://backend-42686524573.europe-west1.run.app/api/v1/customers/
+                credentials: "include"
+            });
 
-                const data = await res.json();
-                
-                console.log(data);
-                setCustomers(data);
-                setFilteredCustomers(data);
-                setCustomersLoaded(true);
-            }
-            catch (err) {
-                console.log("Error: ", err);
-                setFailed(true);
-            }
+            if (!res.ok || res == null)
+                throw new Error(res.status);
+
+            const data = await res.json();
+            
+            console.log(data);
+            setCustomers(data);
+            setFilteredCustomers(data);
+            setCustomersLoaded(true);
         }
+        catch (err) {
+            console.log("Error: ", err);
+            setFailed(true);
+        }
+    }
 
-        loadCustomers();
-    }, []);
-
-    // Toggle Customer ID
     const toggleCustomerId = async (id) => {
         if (customerId === id) {
             setCustomerId(-1);
@@ -47,7 +45,6 @@ function CustomerTable() {
         }
     }
 
-    // Search
     const search = () => {
         if (searchType === 'Name')
         {
@@ -82,6 +79,11 @@ function CustomerTable() {
         setSearchType(event.target.value)
     }
 
+    // Load Customers
+    useEffect(() => {
+        loadCustomers();
+    }, []);
+
     // Display table
     if (failed) {
         return <h1>Database connection failed</h1>;
@@ -89,16 +91,20 @@ function CustomerTable() {
     else if (customersLoaded) {
         return (
             <>
+            <button disabled></button>
+                <NewCustomer show={showNewCustomer} close={() => setShowNewCustomer(false)} reloadCustomers={loadCustomers}></NewCustomer>
+                <NewHouse show={showNewHouse} close={() => setShowNewHouse(false)} reloadCustomers={loadCustomers} customerId={customerId}></NewHouse>
                 <h1>Customer Search</h1>
-                <div className="customer-search">
-                    <input type="search" placeholder="Search" onChange={setSearchInput}></input>
-                    <select name="Sort" onChange={setSelectInput}>
-                        <option value="Name">Name</option>
-                        <option value="Email">Email</option>
-                        <option value="Number">Number</option>
-                    </select>
-                    <button onClick={search}>Search</button>
-                </div>
+                    <div className="customer-search">
+                        <input type="search" placeholder="Search" onChange={setSearchInput}></input>
+                        <select name="Sort" onChange={setSelectInput}>
+                            <option value="Name">Name</option>
+                            <option value="Email">Email</option>
+                            <option value="Number">Number</option>
+                        </select>
+                        <button onClick={search}>Search</button>
+                        <button className="secondary" onClick={() => setShowNewCustomer(true)}>Add +</button>
+                    </div>
                 <table className="customer-table">
                     <thead>
                         <tr>
@@ -119,12 +125,17 @@ function CustomerTable() {
                                 </tr>
                                 {customerId === customer.id && (
                                         <tr className="expanded">
-                                            <td colSpan={3}>
+                                            <td colSpan={4}>
                                                 <div className="houses">
                                                     {customer.houses.map((house) => (
-                                                            <HouseCard customerId={customer.id} houseId={house.id}></HouseCard>    // add house stats, number, n so on
+                                                            <HouseCard customerId={customer.id} houseId={house.id} address={house.address} description={house.description}></HouseCard>
                                                         ))
                                                     }
+                                                    <div className="addhcContainer">
+                                                        <div className="addhc" onClick={() => setShowNewHouse(true)}>
+                                                            <p className="plus">+</p>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </td>
                                         </tr>

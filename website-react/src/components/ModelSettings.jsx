@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function ModelSettings({show, closeSettings}) {
+function ModelSettings({show, close}) {
     const [threshold, setThreshold] = useState(80);
 
     const changeThresholdValue = (event) => {
@@ -10,11 +10,11 @@ function ModelSettings({show, closeSettings}) {
     if (show) {
         return (
             <>
-                <div className="modalBackground"></div>
-                <div className="modelSettings">
+                <div className="mdlBackground"></div>
+                <div className="modal">
                 <div className="header">
                     <h2>Model Settings</h2>
-                    <button className="close" onClick={closeSettings}>&times;</button>
+                    <button className="close" onClick={close}>&times;</button>
                 </div>
                 <div className="body">
                     <div className="inputContainer">
@@ -39,7 +39,7 @@ function ModelSettings({show, closeSettings}) {
                         </div>
                         <input type="range" min={0} max={100} defaultValue={80} onInput={changeThresholdValue}/>
                     </div>
-                    <div className="buttonContainer">
+                    <div className="mdlButtonContainer">
                         <button>Generate</button>
                     </div>
                 </div>

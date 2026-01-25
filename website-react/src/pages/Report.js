@@ -14,7 +14,7 @@ function App() {
     useEffect(() => {
         const loadCustomers = async () => {
             try {
-                const res = await fetch("http://localhost:8000/api/v1/customers/" + customerId + "/", { //https://backend-42686524573.europe-west1.run.app/api/v1/customers/
+                const res = await fetch("https://backend-42686524573.europe-west1.run.app/api/v1/customers/" + customerId + "/", { //https://backend-42686524573.europe-west1.run.app/api/v1/customers/
                     credentials: "include"
                 });
 
@@ -45,7 +45,7 @@ function App() {
         return (
             <>
                 <h1>Report (House ID: {houseId})</h1>
-                <ModelSettings show={showSettings} closeSettings={() => setShowSettings(false)}></ModelSettings>
+                <ModelSettings show={showSettings} close={() => setShowSettings(false)}></ModelSettings>
                 <button onClick={() => setShowSettings(true)}>Settings</button>
             </>
         );

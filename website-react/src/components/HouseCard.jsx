@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import {Link} from "react-router-dom"
 
-function HouseCard({customerId, houseId}) {
+function HouseCard({customerId, houseId, address, description}) {
 
     return (
         <Link to={"/report/" + customerId + "/" + houseId} className="site-title">
@@ -11,7 +11,7 @@ function HouseCard({customerId, houseId}) {
                 <div className="hcBadge">1</div>
 
                 <div className="hcTitleWrap">
-                    <div className="hcTitle">12345 Mailman Dr</div>
+                    <div className="hcTitle">{address}</div>
                 </div>
             </div>
 
@@ -40,7 +40,7 @@ function HouseCard({customerId, houseId}) {
             </div>
 
             {/* main point description */}
-            <div className="hcDescription">damage found on backside roof</div>
+            <div className="hcDescription">{description}</div>
 
             {/* Bottom hint */}
             <div className="hcReport">Click to view report →</div>
