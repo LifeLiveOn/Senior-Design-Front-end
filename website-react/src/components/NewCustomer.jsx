@@ -84,23 +84,23 @@ function NewCustomer({show, close, reloadCustomers}) {
     if (show) {
         return (
             <>
-                <div className="mdlBackground"></div>
+                <div className="modal-background"></div>
                 <div className="modal">
                 <div className="header">
                     <h2>New Customer</h2>
                     <button className="close" onClick={close}>&times;</button>
                 </div>
                 <div className="body">
-                    <div className="inputContainer">
+                    <div className="input-container">
                         <h4>Name:</h4>
                         <input type="text" placeholder="First" onChange={setFirstNameInput}></input>
                         <input type="text" placeholder="Last" onChange={setLastNameInput}></input>
                     </div>
-                    <div className="inputContainer">
+                    <div className="input-container">
                         <h4>Email:</h4>
                         <input type="text" placeholder="example.email@gmail.com" onChange={setEmailInput}></input>
                     </div>
-                    <div className="inputContainer">
+                    <div className="input-container">
                         <h4>Number:</h4>
                         <input type="text" placeholder="123-456-7890" onChange={setNumberInput}></input>
                     </div>

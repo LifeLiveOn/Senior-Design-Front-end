@@ -1,11 +1,10 @@
-import { useEffect, useState } from "react";
 import {Link} from "react-router-dom"
 
 function HouseCard({customerId, houseId, address, description}) {
 
     return (
         <Link to={"/report/" + customerId + "/" + houseId} className="site-title">
-        <div className="houseCard houseCardNew">
+        <div className="house-card houseCardNew">
             {/*number + address */}
             <div className="hcTop">
                 <div className="hcBadge">1</div>

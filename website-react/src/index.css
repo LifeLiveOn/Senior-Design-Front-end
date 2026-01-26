@@ -21,6 +21,7 @@ h1 {
 button {
   background-color: #D62311;
   color: white;
+  height: 48px;
   padding: 12px 48px;
   border-radius: 50ch;
   border: none;
@@ -52,18 +53,20 @@ button.close:active:not(:disabled, .secondary) {
 button.secondary {
   background-color: white;
   color: #D62311;
-  border: 1px solid lightgray;
+  border: 1px solid #D62311;
   padding: 12px 24px;
   border-radius: 50ch;
   font-size: 16px;
   font-weight: bold;
+  
 }
 button.secondary:hover {
-  background-color: #F5F5F5;
+  border: 2px solid #ac1b0e;
+  color: #ac1b0e;
   cursor: pointer;
 }
 button.secondary:active {
-  background-color: lightgray;
+  background-color: #F0F0F0;
 }
 
 button.secondary.close {
@@ -175,7 +178,7 @@ input[type="radio"] {
   border-collapse: collapse;
   overflow: hidden;
   justify-content: center;
-  border-radius: 4px 4px 0 0;
+  border-radius: 5px 5px 0 0;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 }
 .customer-table th, .customer-table td {
@@ -202,16 +205,16 @@ input[type="radio"] {
 .customer-table tr.expanded {
   background-color: white;
   border-bottom: 1px solid lightgray;
+  padding: 0;
+}
+.customer-table tr.expanded td {
+  padding: 0;
 }
 .customer-table div.houses {
   display: flex;
+  background-color: #F7F0E4;
   overflow-x: auto;
   max-width: 100%;
-}
-
-
-.btnContainer {
-  padding: 8px 0;
 }
 
 /* removes blue underline when clicked*/
@@ -222,17 +225,17 @@ input[type="radio"] {
 }
 
 /* card style */
-.houseCard {
+.house-card {
   background-color: white;
   width: 200px;
   height: 250px;
-  margin: 0 40px 0 0;
+  margin: 20px;
   overflow: hidden;
   border: 1px solid lightgray;
-  border-radius: 10px;
+  border-radius: 5px;
 }
 
-.houseCard:hover {
+.house-card:hover {
   cursor: pointer;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
 }
@@ -243,30 +246,30 @@ input[type="radio"] {
   width: fit-content;
 }
 
-.addhc {
+.add-house-card {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #F5F5F5;
+  background-color: white;
   color: lightgray;
-  width: 160px;
-  height: 160px;
-  padding: 0;
+  width: 150px;
+  height: 150px;
+  margin: 20px;
   font-size: 25px;
   overflow: hidden;
   border: 1px solid lightgray;
-  border-radius: 10px;
+  border-radius: 5px;
 }
-.addhc p {
+.add-house-card p {
   margin: 0;
   padding: 0 0 20px 0;
 }
-.addhc:hover {
+.add-house-card:hover {
   cursor: pointer;
-  background-color: #ECECEC;
+  background-color: #F5F5F5;
 }
-.addhc .plus {
+.add-house-card .plus {
   font-size: 60px;
 }
 
@@ -425,7 +428,7 @@ input[type="radio"] {
 .modal div.body {
   margin: 0;
 }
-.mdlBackground {
+.modal-background {
   background-color: rgba(0, 0, 0, 0.4);
   height: 100%;
   width: 100%;
@@ -437,11 +440,15 @@ input[type="radio"] {
   z-index: 9;
 }
 
-.inputContainer {
+.input-container {
   border-bottom: 1px solid lightgray;
-  padding: 0 24px 24px 24px;
+  padding: 24px;
 }
-.inputContainer input {
+.input-container h4 {
+  margin: 0;
+  margin-bottom: 16px;
+}
+.input-container input {
   margin-right: 8px;
 }
 .inputHeader {

@@ -10,21 +10,21 @@ function ModelSettings({show, close}) {
     if (show) {
         return (
             <>
-                <div className="mdlBackground"></div>
+                <div className="modal-background"></div>
                 <div className="modal">
                 <div className="header">
                     <h2>Model Settings</h2>
                     <button className="close" onClick={close}>&times;</button>
                 </div>
                 <div className="body">
-                    <div className="inputContainer">
+                    <div className="input-container">
                         <h4>Infrence mode:</h4>
                         <input type="radio" name="infrence" id="normal" defaultChecked></input>
                         <label htmlFor="normal">Normal</label>
                         <input type="radio" name="infrence" id="tiled"></input>
                         <label htmlFor="tiled">Tiled</label>
                     </div>
-                    <div className="inputContainer">
+                    <div className="input-container">
                         <h4>Tile size (for tiled mode only):</h4>
                         <select name="tileSize">
                             <option value="normal">Normal</option>
@@ -32,7 +32,7 @@ function ModelSettings({show, close}) {
                             <option value="small">Small</option>
                         </select>
                     </div>
-                    <div className="inputContainer">
+                    <div className="input-container">
                         <div className="inputHeader">
                             <h4>Threshold: </h4>
                             <p className="sliderValue">{threshold + "%"}</p>

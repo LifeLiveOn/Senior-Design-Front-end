@@ -91,7 +91,6 @@ function CustomerTable() {
     else if (customersLoaded) {
         return (
             <>
-            <button disabled></button>
                 <NewCustomer show={showNewCustomer} close={() => setShowNewCustomer(false)} reloadCustomers={loadCustomers}></NewCustomer>
                 <NewHouse show={showNewHouse} close={() => setShowNewHouse(false)} reloadCustomers={loadCustomers} customerId={customerId}></NewHouse>
                 <h1>Customer Search</h1>
@@ -132,7 +131,7 @@ function CustomerTable() {
                                                         ))
                                                     }
                                                     <div className="addhcContainer">
-                                                        <div className="addhc" onClick={() => setShowNewHouse(true)}>
+                                                        <div className="add-house-card" onClick={() => setShowNewHouse(true)}>
                                                             <p className="plus">+</p>
                                                         </div>
                                                     </div>

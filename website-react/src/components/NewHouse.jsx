@@ -68,18 +68,18 @@ function NewHouse({show, close, reloadCustomers, customerId}) {
     if (show) {
         return (
             <>
-                <div className="mdlBackground"></div>
+                <div className="modal-background"></div>
                 <div className="modal">
                 <div className="header">
                     <h2>New House</h2>
                     <button className="close" onClick={close}>&times;</button>
                 </div>
                 <div className="body">
-                    <div className="inputContainer">
+                    <div className="input-container">
                         <h4>Address:</h4>
                         <input type="text" placeholder="1234 Example Trl" onChange={setAddressInput}></input>
                     </div>
-                    <div className="inputContainer">
+                    <div className="input-container">
                         <h4>Description:</h4>
                         <textarea rows={5} cols={40} onChange={setDesctiptionInput}></textarea>
                     </div>
