@@ -85,10 +85,9 @@ function NewHouse({show, close, reloadCustomers, customerId}) {
                         </div>
                     </div>
                     <div className="mdlButtonContainer">
-                        { posting && (
+                        { posting ? (
                             <button disabled>Loading...</button>
-                        )}
-                        { !posting && (
+                        ) : (
                             <button className="primary" onClick={() => postHouse()}>Create</button>
                         )}
                     </div>

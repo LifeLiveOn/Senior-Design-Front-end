@@ -12,47 +12,48 @@ function App() {
     const [showSettings, setShowSettings] = useState(false);
     const [showImage, setShowImage] = useState(false);
     const [imageSrc, setImageSrc] = useState("");
-    
-    // Load Customers
-    useEffect(() => {
-        const loadCustomers = async () => {
-            try {
-                const res = await fetch("https://backend-42686524573.europe-west1.run.app/api/v1/customers/" + customerId + "/", { //https://backend-42686524573.europe-west1.run.app/api/v1/customers/
-                    credentials: "include"
-                });
 
-                if (!res.ok || res == null)
-                    throw new Error(res.status);
+    const loadCustomers = async () => {
+        try {
+            const res = await fetch("https://backend-42686524573.europe-west1.run.app/api/v1/customers/" + customerId + "/", { //https://backend-42686524573.europe-west1.run.app/api/v1/customers/
+                credentials: "include"
+            });
 
-                const data = await res.json();
+            if (!res.ok || res == null)
+                throw new Error(res.status);
 
-                const houses = data.houses;
+            const data = await res.json();
 
-                console.log(data);
-                setHouse(houses.filter((h) => h.id.toString() === houseId));
-                setHouseLoaded(true);
-            }
-            catch (err) {
-                console.log("Error: ", err);
-                setFailed(true);
-            }
+            const houses = data.houses;
+
+            console.log(data);
+            setHouse(houses.filter((h) => h.id.toString() === houseId));
+            setHouseLoaded(true);
         }
-        
-        loadCustomers();
-    }, []);
+        catch (err) {
+            console.log("Error: ", err);
+            setFailed(true);
+        }
+    }
 
     const magnifyImage = (src) => {
         setImageSrc(src);
         setShowImage(true);
     }
+
+    // Load Customers
+    useEffect(() => {
+        loadCustomers();
+    }, []);
     
+    // Report
     if (failed) {
         return <h1>Database connection failed</h1>;
     }
     else if (houseLoaded) {
         return (
             <>
-                <ModelSettings show={showSettings} close={() => setShowSettings(false)}></ModelSettings>
+                <ModelSettings show={showSettings} close={() => setShowSettings(false)} houseId={houseId} reloadCustomers={loadCustomers}></ModelSettings>
                 <ImageModal show={showImage} close={() => setShowImage(false)} imageSrc={imageSrc}></ImageModal>
                 <h1>Report (House ID: {houseId})</h1>
                 <button className="primary" onClick={() => setShowSettings(true)}>Settings</button>

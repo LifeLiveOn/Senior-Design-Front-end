@@ -105,10 +105,9 @@ function NewCustomer({show, close, reloadCustomers}) {
                             <input type="text" placeholder="123-456-7890" onChange={setNumberInput}></input>
                         </div>
                         <div className="mdlButtonContainer">
-                            { posting && (
+                            { posting ? (
                                 <button disabled>Loading...</button>
-                            )}
-                            { !posting && (
+                            ) : (
                                 <button className="primary" onClick={() => postCustomer()}>Create</button>
                             )}
                         </div>
