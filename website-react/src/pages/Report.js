@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ModelSettings from "../components/ModelSettings";
+import ImageModal from "../components/ImageModal";
 
 
 function App() {
@@ -9,6 +10,8 @@ function App() {
     const [failed, setFailed] = useState(false);
     const [houseLoaded, setHouseLoaded] = useState(false);
     const [showSettings, setShowSettings] = useState(false);
+    const [showImage, setShowImage] = useState(false);
+    const [imageSrc, setImageSrc] = useState("");
     
     // Load Customers
     useEffect(() => {
@@ -37,6 +40,11 @@ function App() {
         
         loadCustomers();
     }, []);
+
+    const magnifyImage = (src) => {
+        setImageSrc(src);
+        setShowImage(true);
+    }
     
     if (failed) {
         return <h1>Database connection failed</h1>;
@@ -44,9 +52,18 @@ function App() {
     else if (houseLoaded) {
         return (
             <>
-                <h1>Report (House ID: {houseId})</h1>
                 <ModelSettings show={showSettings} close={() => setShowSettings(false)}></ModelSettings>
-                <button onClick={() => setShowSettings(true)}>Settings</button>
+                <ImageModal show={showImage} close={() => setShowImage(false)} imageSrc={imageSrc}></ImageModal>
+                <h1>Report (House ID: {houseId})</h1>
+                <button className="primary" onClick={() => setShowSettings(true)}>Settings</button>
+                <h2>Images {house[0].images.length}</h2>
+                <div className="house-images">
+                    {
+                        house[0].images.map((image) => (
+                            <img width={200} height={200} src={image.image_url} onClick={() => magnifyImage(image.image_url)}></img>
+                        ))
+                    }
+                </div>
             </>
         );
     }

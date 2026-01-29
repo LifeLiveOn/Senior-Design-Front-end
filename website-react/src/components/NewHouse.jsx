@@ -70,29 +70,29 @@ function NewHouse({show, close, reloadCustomers, customerId}) {
             <>
                 <div className="modal-background"></div>
                 <div className="modal">
-                <div className="header">
-                    <h2>New House</h2>
-                    <button className="close" onClick={close}>&times;</button>
-                </div>
-                <div className="body">
-                    <div className="input-container">
-                        <h4>Address:</h4>
-                        <input type="text" placeholder="1234 Example Trl" onChange={setAddressInput}></input>
+                    <div className="header">
+                        <h2>New House</h2>
+                        <button className="close" onClick={close}>&times;</button>
                     </div>
-                    <div className="input-container">
-                        <h4>Description:</h4>
-                        <textarea rows={5} cols={40} onChange={setDesctiptionInput}></textarea>
+                    <div className="body">
+                        <div className="input-container">
+                            <h4>Address:</h4>
+                            <input type="text" placeholder="1234 Example Trl" onChange={setAddressInput}></input>
+                        </div>
+                        <div className="input-container">
+                            <h4>Description:</h4>
+                            <textarea rows={5} cols={40} onChange={setDesctiptionInput}></textarea>
+                        </div>
+                    </div>
+                    <div className="mdlButtonContainer">
+                        { posting && (
+                            <button disabled>Loading...</button>
+                        )}
+                        { !posting && (
+                            <button className="primary" onClick={() => postHouse()}>Create</button>
+                        )}
                     </div>
                 </div>
-                <div className="mdlButtonContainer">
-                    { posting && (
-                        <button disabled>Loading...</button>
-                    )}
-                    { !posting && (
-                        <button onClick={() => postHouse()}>Create</button>
-                    )}
-                </div>
-            </div>
             </>
         );
     }

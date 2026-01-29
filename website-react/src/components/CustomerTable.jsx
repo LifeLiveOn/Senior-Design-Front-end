@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import HouseCard from "../components/HouseCard";
+import HouseCard from "./HouseCard";
 import NewCustomer from "./NewCustomer";
 import NewHouse from "./NewHouse";
 
@@ -11,6 +11,8 @@ function CustomerTable() {
     const [showNewCustomer, setShowNewCustomer] = useState(false);
     const [showNewHouse, setShowNewHouse] = useState(false);
     const [customerId, setCustomerId] = useState(-1);
+    const [pageNumber, setPageNumber] = useState(1);
+    const [pageCount, setPageCount] = useState(1);
     const [searchContent, setSearchContent] = useState("");
     const [searchType, setSearchType] = useState("Name");
 
@@ -29,6 +31,7 @@ function CustomerTable() {
             setCustomers(data);
             setFilteredCustomers(data);
             setCustomersLoaded(true);
+            setPageCount(Math.ceil(data.length / 7))
         }
         catch (err) {
             console.log("Error: ", err);
@@ -79,6 +82,13 @@ function CustomerTable() {
         setSearchType(event.target.value)
     }
 
+    const changePage = (increment) => {
+        let number = pageNumber + increment;
+        if (number > 0 && number <= pageCount) {
+            setPageNumber(number);
+        }
+    }
+
     // Load Customers
     useEffect(() => {
         loadCustomers();
@@ -94,16 +104,16 @@ function CustomerTable() {
                 <NewCustomer show={showNewCustomer} close={() => setShowNewCustomer(false)} reloadCustomers={loadCustomers}></NewCustomer>
                 <NewHouse show={showNewHouse} close={() => setShowNewHouse(false)} reloadCustomers={loadCustomers} customerId={customerId}></NewHouse>
                 <h1>Customer Search</h1>
-                    <div className="customer-search">
-                        <input type="search" placeholder="Search" onChange={setSearchInput}></input>
-                        <select name="Sort" onChange={setSelectInput}>
-                            <option value="Name">Name</option>
-                            <option value="Email">Email</option>
-                            <option value="Number">Number</option>
-                        </select>
-                        <button onClick={search}>Search</button>
-                        <button className="secondary" onClick={() => setShowNewCustomer(true)}>Add +</button>
-                    </div>
+                <div className="customer-search">
+                    <input type="search" placeholder="Search" onChange={setSearchInput}></input>
+                    <select name="Sort" onChange={setSelectInput}>
+                        <option value="Name">Name</option>
+                        <option value="Email">Email</option>
+                        <option value="Number">Number</option>
+                    </select>
+                    <button className="primary" onClick={search}>Search</button>
+                    <button className="secondary" onClick={() => setShowNewCustomer(true)}>Add +</button>
+                </div>
                 <table className="customer-table">
                     <thead>
                         <tr>
@@ -114,7 +124,7 @@ function CustomerTable() {
                         </tr>
                     </thead>
                     <tbody> {
-                        filteredCustomers.map((customer) => (
+                        filteredCustomers.slice((pageNumber - 1) * 7, (pageNumber - 1) * 7 + 7).map((customer) => (
                             <>
                                 <tr key={customer.id} className="clickable" onClick={() => toggleCustomerId(customer.id)}>
                                     <td>{customer.created_at.substring(0, 10)}</td>
@@ -146,6 +156,11 @@ function CustomerTable() {
                     }
                     </tbody>
                 </table>
+                <div className="page-nav">
+                    <button className="icon" onClick={() => changePage(-1)}>◀</button>
+                    <p>{pageNumber}</p>
+                    <button className="icon" onClick={() => changePage(1)}>▶</button>
+                </div>
             </>
 
         );
