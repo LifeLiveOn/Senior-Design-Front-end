@@ -1,13 +1,13 @@
 import {Link} from "react-router-dom"
 
-function HouseCard({customerId, houseId, address, description}) {
+function HouseCard({customerId, houseId, address, description, imgCount, index}) {
 
     return (
         <Link to={"/report/" + customerId + "/" + houseId} className="site-title">
         <div className="house-card houseCardNew">
             {/*number + address */}
             <div className="hcTop">
-                <div className="hcBadge">1</div>
+                <div className="hcBadge">{index}</div>
 
                 <div className="hcTitleWrap">
                     <div className="hcTitle">{address}</div>
@@ -33,7 +33,7 @@ function HouseCard({customerId, houseId, address, description}) {
             </div>
 
             <div className="hcStat">
-                <div className="hcStatValue">0</div>
+                <div className="hcStatValue">{imgCount}</div>
                 <div className="hcStatLabel">Photos</div>
             </div>
             </div>

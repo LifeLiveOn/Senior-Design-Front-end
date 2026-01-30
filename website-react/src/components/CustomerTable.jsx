@@ -136,8 +136,8 @@ function CustomerTable() {
                                         <tr className="expanded">
                                             <td colSpan={4}>
                                                 <div className="houses">
-                                                    {customer.houses.map((house) => (
-                                                            <HouseCard customerId={customer.id} houseId={house.id} address={house.address} description={house.description}></HouseCard>
+                                                    {customer.houses.map((house, index) => (
+                                                            <HouseCard customerId={customer.id} houseId={house.id} address={house.address} description={house.description} imgCount={house.images.length} index={index + 1}></HouseCard>
                                                         ))
                                                     }
                                                     <div className="addhcContainer">
