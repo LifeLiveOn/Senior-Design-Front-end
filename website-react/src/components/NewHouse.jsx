@@ -80,6 +80,15 @@ function NewHouse({show, close, reloadCustomers, customerId}) {
                             <input type="text" placeholder="1234 Example Trl" onChange={setAddressInput}></input>
                         </div>
                         <div className="input-container">
+                            <h4>Roof Type:</h4>
+                            <select name="roofType">
+                                <option value={"asphalt"}>Asphalt</option>
+                                <option value={"slate"}>Slate</option>
+                                <option value={"metal"}>Metal</option>
+                                <option value={"wood"}>Wood</option>
+                            </select>
+                        </div>
+                        <div className="input-container">
                             <h4>Description:</h4>
                             <textarea rows={5} cols={40} onChange={setDesctiptionInput}></textarea>
                         </div>

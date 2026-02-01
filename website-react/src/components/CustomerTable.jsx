@@ -16,6 +16,8 @@ function CustomerTable() {
     const [searchContent, setSearchContent] = useState("");
     const [searchType, setSearchType] = useState("Name");
 
+    const customersPerPage = 6;
+
     const loadCustomers = async () => {
         try {
             const res = await fetch("https://backend-42686524573.europe-west1.run.app/api/v1/customers/", { //https://backend-42686524573.europe-west1.run.app/api/v1/customers/
@@ -103,7 +105,10 @@ function CustomerTable() {
             <>
                 <NewCustomer show={showNewCustomer} close={() => setShowNewCustomer(false)} reloadCustomers={loadCustomers}></NewCustomer>
                 <NewHouse show={showNewHouse} close={() => setShowNewHouse(false)} reloadCustomers={loadCustomers} customerId={customerId}></NewHouse>
-                <h1>Customer Search</h1>
+                <div className="page-header">
+                    <h1>Customer Search</h1>
+                </div>
+                
                 <div className="customer-search">
                     <input type="search" placeholder="Search" onChange={setSearchInput}></input>
                     <select name="Sort" onChange={setSelectInput}>
@@ -124,7 +129,7 @@ function CustomerTable() {
                         </tr>
                     </thead>
                     <tbody> {
-                        filteredCustomers.slice((pageNumber - 1) * 7, (pageNumber - 1) * 7 + 7).map((customer) => (
+                        filteredCustomers.slice((pageNumber - 1) * customersPerPage, (pageNumber - 1) * customersPerPage + customersPerPage).map((customer) => (
                             <>
                                 <tr key={customer.id} className="clickable" onClick={() => toggleCustomerId(customer.id)}>
                                     <td>{customer.created_at.substring(0, 10)}</td>
@@ -166,7 +171,11 @@ function CustomerTable() {
         );
     }
     else {
-        return <h1>Loading Customers...</h1>;
+        return (
+            <div className="loading">
+                <h1>Loading Customers...</h1>
+            </div>
+        );
     }
 }
 

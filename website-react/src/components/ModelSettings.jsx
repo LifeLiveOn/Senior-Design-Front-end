@@ -16,7 +16,7 @@ function ModelSettings({show, close, houseId, reloadCustomers}) {
         try {
             setPosting(true);
 
-            const res = await fetch("https://backend-42686524573.europe-west1.run.app/api/" + houseId + "/run_prediction/", {
+            const res = await fetch("https://backend-42686524573.europe-west1.run.app/api/houses/" + houseId + "/run_prediction/", {
                 method: "POST",
                 credentials: "include",
                 headers: {

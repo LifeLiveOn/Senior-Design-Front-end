@@ -1,3 +1,8 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -16,6 +21,10 @@ code {
 h1 {
   text-align: center;
   font-size: 48px;
+}
+
+h2 {
+  font-size: 40px;
 }
 
 button {
@@ -163,6 +172,42 @@ input[type="radio"] {
   padding: 0;
 }
 
+.page-header {
+  margin-bottom: 32px;
+}
+.page-header h1 {
+  margin: 0 0 8px 0;
+}
+.page-header div.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 16px;
+}
+.page-header div.container button{
+  height: 36px;
+  padding: 0 24px;
+  margin-left: 24px;
+}
+
+.subheader {
+  margin-top: 32px;
+  margin-bottom: 16px;
+}
+.subheader h2 {
+  margin: 0 0 8px 0;
+}
+.subheader p {
+  margin: 0;
+}
+
+div.loading {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
 .tblHead {
   display: flex;
   justify-content: space-between;
@@ -199,14 +244,14 @@ input[type="radio"] {
 .customer-table tbody td {
   max-width: 100px;
 }
-.customer-table tr.clickable {
+.customer-table tr.clickable:not(:last-child) {
   border-bottom: 1px solid lightgray;
 }
 .customer-table tr.clickable:hover {
   background-color: #F7F0E4;
   cursor: pointer;
 }
-.customer-table tr.expanded {
+.customer-table tr.expanded:not(:last-child) {
   background-color: white;
   border-bottom: 1px solid lightgray;
   padding: 0;
@@ -493,15 +538,54 @@ input[type="radio"] {
   text-align: center;
 }
 
+.house-info {
+  display: flex;
+  justify-content: center;
+  border-bottom: 1px solid lightgray;
+  gap: 40px;
+}
+.house-info p {
+  margin: 8px 0;
+  color: gray;
+}
+
 .house-images {
-  border-top: 2px solid lightgray;
+  display: flex;
+  gap: 16px;
 }
 .house-images img {
-  margin: 16px;
   border: 1px solid lightgray;
   border-radius: 5px;
 }
 .house-images img:hover {
   cursor: pointer;
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+}
+
+.badge {
+  display: flex;
+  align-items: center;
+  width: fit-content;
+  color: white;
+  padding: 2px 8px;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+.summary {
+  display: flex;
+  gap: 24px;
+}
+.summary .header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+  gap: 8px;
+}
+.summary .content{
+  border: 1px solid #acabab;
+  width: stretch;
+  padding: 24px;
+  box-shadow: 0 0 3px rgba(33, 33, 33, 0.25);
+  border-radius: 5px;
 }
