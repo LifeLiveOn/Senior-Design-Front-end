@@ -1,14 +1,14 @@
 import { useState } from "react";
 
 function ModelSettings({show, close, houseId, reloadCustomers}) {
-    const [infrenceMode, setInfrenceMode] = useState("normal");
+    const [inferenceMode, setInferenceMode] = useState("normal");
     const [tileSize, setTileSize] = useState(560);
     const [threshold, setThreshold] = useState(40);
     const [posting, setPosting] = useState(false);
 
     const generateReport = async () => {
         const settings = {
-            mode: infrenceMode,
+            mode: inferenceMode,
             threshold: threshold / 100,
             tile_size: tileSize,
         }
@@ -43,7 +43,7 @@ function ModelSettings({show, close, houseId, reloadCustomers}) {
     }
 
     const setModeValue = (tiled) => {
-        setInfrenceMode(tiled ? "tiled" : "normal");
+        setInferenceMode(tiled ? "tiled" : "normal");
     }
     const setTileSizeValue = (event) => {
         setTileSize(event.target.value);
@@ -63,7 +63,7 @@ function ModelSettings({show, close, houseId, reloadCustomers}) {
                     </div>
                     <div className="body">
                         <div className="input-container">
-                            <h4>Infrence mode:</h4>
+                            <h4>Inference mode:</h4>
                             <input type="radio" name="infrence" id="normal" defaultChecked onChange={() => setModeValue(false)}></input>
                             <label htmlFor="normal">Normal</label>
                             <input type="radio" name="infrence" id="tiled"  onChange={() => setModeValue(true)}></input>

@@ -15,6 +15,9 @@ function App() {
     const [showImage, setShowImage] = useState(false);
     const [imageSrc, setImageSrc] = useState("");
 
+    const windDamage = true;
+    const hailDamage = true;
+
     const loadCustomers = async () => {
         try {
             const res = await fetch("https://backend-42686524573.europe-west1.run.app/api/v1/customers/" + customerId + "/", { //https://backend-42686524573.europe-west1.run.app/api/v1/customers/
@@ -78,33 +81,56 @@ function App() {
                 <div className="summary">
                     <div className="content">
                         <div className="header">
-                            <h3>Critical</h3>
+                            <h3>Severity</h3>
                             <Badge name={"4/5"} color={"tomato"}></Badge>
                         </div>
                         <p>The roof has critical damage and needs immediate attention. </p>
                     </div>
                     <div className="content">
                         <div className="header">
-                            <h3>Damage</h3>
-                            <Badge name={"Wind"} color={"lightslategray"}></Badge>
-                            <Badge name={"Hail"} color={"skyblue"}></Badge>
+                            <h3>Type</h3>
+                            { windDamage && (
+                                <Badge name={"Wind"} color={"lightslategray"}></Badge>
+                            )}
+                            { hailDamage && (
+                                <Badge name={"Hail"} color={"skyblue"}></Badge>
+                            )}
                         </div>
-                        <p>
-                            Wind can remove shingles and loosen connected ones.
-                            High winds can cause granule loss and leave shingles more susceptible to the elements.
-                            This may lead to accelerated ageing and degredation.
-                        </p>
-                        <p>
-                            Hail can leave dents, cracks, holes, and loose shingles, leading to poor water flow and leaks.
-                            If left unchecked, this can cause water damage and mold to form.
-                        </p>
+                        { (windDamage && hailDamage) ? (
+                            <>
+                                <p>
+                                    Wind can remove shingles and loosen connected ones.
+                                    High winds can cause granule loss and leave shingles more susceptible to the elements.
+                                    This may lead to accelerated ageing and degredation.
+                                </p>
+                                <p>
+                                    Hail can leave dents, cracks, holes, and loose shingles, leading to poor water flow and leaks.
+                                    If left unchecked, this can cause water damage and mold to form.
+                                </p>
+                            </>
+                        ) : windDamage ? (
+                            <p>
+                                Wind can remove shingles and loosen connected ones.
+                                High winds can cause granule loss and leave shingles more susceptible to the elements.
+                                This may lead to accelerated ageing and degredation.
+                            </p>
+                        ) : hailDamage ? (
+                            <p>
+                                Hail can leave dents, cracks, holes, and loose shingles, leading to poor water flow and leaks.
+                                If left unchecked, this can cause water damage and mold to form.
+                            </p>
+                        ) : (
+                            <p>
+                                Could not be classified.
+                            </p>
+                        )}
                     </div>
                     <div className="content">
                         <div className="header">
                             <h3>Estimate</h3>
                             <Badge name={"$4,000"} color={"mediumseagreen"}></Badge>
                         </div>
-                        <p>This pricing has taken into account the amount of damage and the cost of asphalt shingles.</p>
+                        <p>This estimate has taken into account the total amount of damage along with the cost of asphalt shingles.</p>
                     </div>
                 </div>
                 <div className="subheader">
