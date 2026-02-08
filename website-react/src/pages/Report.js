@@ -16,7 +16,7 @@ function App() {
     const [imageSrc, setImageSrc] = useState("");
 
     const windDamage = true;
-    const hailDamage = true;
+    const hailDamage = false;
 
     const loadCustomers = async () => {
         try {

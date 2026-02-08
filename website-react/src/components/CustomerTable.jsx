@@ -98,7 +98,10 @@ function CustomerTable() {
 
     // Display table
     if (failed) {
-        return <h1>Database connection failed</h1>;
+        // return <h1>Database connection failed</h1>;
+        return <a href="https://backend-42686524573.europe-west1.run.app/api/login/" className="login-button">
+            <button className="primary">Login</button>
+        </a>
     }
     else if (customersLoaded) {
         return (
