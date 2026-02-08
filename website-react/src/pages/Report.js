@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import ModelSettings from "../components/ModelSettings";
 import Badge from "../components/Badge";
 import ImageModal from "../components/ImageModal";
+import ImageUploadModal from "../components/ImageUploadModal";
 
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
     const [houseLoaded, setHouseLoaded] = useState(false);
     const [showSettings, setShowSettings] = useState(false);
     const [showImage, setShowImage] = useState(false);
+    const [showUpload, setShowUpload] = useState(false);
     const [imageSrc, setImageSrc] = useState("");
 
     const windDamage = true;
@@ -48,6 +50,11 @@ function App() {
         setShowImage(true);
     }
 
+    const copyToClipboard = (text) => {
+        navigator.clipboard.writeText(text);
+        alert("Copied " + text);
+    }
+
     // Load Customers
     useEffect(() => {
         loadCustomers();
@@ -62,17 +69,33 @@ function App() {
             <>
                 <ModelSettings show={showSettings} close={() => setShowSettings(false)} houseId={houseId} reloadCustomers={loadCustomers}></ModelSettings>
                 <ImageModal show={showImage} close={() => setShowImage(false)} imageSrc={imageSrc}></ImageModal>
+                <ImageUploadModal show={showUpload} close={() => setShowUpload(false)} reloadCustomers={loadCustomers} houseId={houseId}></ImageUploadModal>
                 <div className="page-header">
                     <div className="container">
                         <h1>Report</h1>
                         <button className="secondary" onClick={() => setShowSettings(true)}>⚙ Settings</button>
                     </div>
                     <div className="house-info">
-                        <p>Address: {house[0].address}</p>
-                        <p>Roof Type: {"Asphalt"}</p>
-                        <p>Customer: {customer.name}</p>
-                        <p>Email: {customer.email}</p>
-                        <p>Number: {customer.phone}</p>
+                        <div>
+                            <label>Address: </label>
+                            <p onClick={() => copyToClipboard(house[0].address)}>{house[0].address}</p>
+                        </div>
+                        <div>
+                            <label>Roof Type: </label>
+                            <p onClick={() => copyToClipboard("Asphalt")}>{"Asphalt"}</p>
+                        </div>
+                        <div>
+                            <label>Customer: </label>
+                            <p onClick={() => copyToClipboard(customer.name)}>{customer.name}</p>
+                        </div>
+                        <div>
+                            <label>Email: </label>
+                            <p onClick={() => copyToClipboard(customer.email)}>{customer.email}</p>
+                        </div>
+                        <div>
+                            <label>Number: </label>
+                            <p onClick={() => copyToClipboard(customer.phone)}>{customer.phone}</p>
+                        </div>
                     </div>
                 </div>
                 <div className="subheader">
@@ -134,8 +157,7 @@ function App() {
                     </div>
                 </div>
                 <div className="subheader">
-                    <h2>Images <input type="file" multiple></input></h2>
-                    <p>Count: {house[0].images.length}</p>
+                    <h2>Images </h2>
                 </div>
                 <div className="house-images">
                     {
@@ -143,6 +165,10 @@ function App() {
                             <img width={200} height={200} src={image.predicted_url} onClick={() => magnifyImage(image.predicted_url)}></img>
                         ))
                     }
+                </div>
+                <br></br>
+                <div>
+                    <button className="secondary" onClick={() => setShowUpload(true)}>Upload</button>
                 </div>
             </>
         );

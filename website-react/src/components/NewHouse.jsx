@@ -2,6 +2,7 @@ import { useState } from "react";
 
 function NewHouse({show, close, reloadCustomers, customerId}) {
     const [address, setAddress] = useState("");
+    const [roofType, setRoofType] = useState("asphalt");
     const [description, setDescription] = useState("");
     const [posting, setPosting] = useState(false);
     const [showRequired, setShowRequired] = useState(false);
@@ -20,6 +21,7 @@ function NewHouse({show, close, reloadCustomers, customerId}) {
             const house = {
                 customer: customerId,
                 address: address,
+                roof_type: roofType,
                 description: description
             }
 
@@ -65,6 +67,7 @@ function NewHouse({show, close, reloadCustomers, customerId}) {
 
     const reset = () => {
         setAddress("")
+        setRoofType("asphalt")
         setDescription("")
         setShowRequired(false);
     }

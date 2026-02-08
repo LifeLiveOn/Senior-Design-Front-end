@@ -52,6 +52,12 @@ function ModelSettings({show, close, houseId, reloadCustomers}) {
         setThreshold(event.target.value);
     }
 
+    const reset = () => {
+        setInferenceMode("normal");
+        setTileSize(560);
+        setThreshold(40);
+    }
+
     if (show) {
         return (
             <>
@@ -59,7 +65,7 @@ function ModelSettings({show, close, houseId, reloadCustomers}) {
                 <div className="modal">
                     <div className="header">
                         <h2>Model Settings</h2>
-                        <button className="close" onClick={close}>&times;</button>
+                        <button className="close" onClick={() => {close(); reset();}}>&times;</button>
                     </div>
                     <div className="body">
                         <div className="input-container">

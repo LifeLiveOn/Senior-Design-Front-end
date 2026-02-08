@@ -69,7 +69,6 @@ button.secondary {
   border-radius: 50ch;
   font-size: 16px;
   font-weight: bold;
-  
 }
 button.secondary:hover {
   border: 2px solid #ac1b0e;
@@ -144,24 +143,25 @@ input[type="radio"] {
 }
 input[type="file"] {
   padding: 8px;
-  border: 1px solid lightgray;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
   border-radius: 50ch;
 }
 input[type="file"]::file-selector-button {
-  background-color: #D62311;
-  color: white;
-  padding: 8px 24px;
+  background-color: white;
+  color: #D62311;
+  border: 1px solid #D62311;
+  padding: 12px 24px;
   border-radius: 50ch;
   font-size: 16px;
   font-weight: bold;
-  border: none;
 }
 input[type="file"]::file-selector-button:hover {
-  background-color: #A11B13;
+  border: 2px solid #ac1b0e;
+  color: #ac1b0e;
   cursor: pointer;
 }
 input[type="file"]::file-selector-button:active {
-  background-color: #5f0f0b;
+  background-color: #F0F0F0;
 }
 
 
@@ -508,10 +508,6 @@ div.loading {
 .modal div.header h2 {
   padding: 8px 24px;
   margin: 0;
-
-}
-.modal div.body {
-  margin: 0;
 }
 .modal-background {
   background-color: rgba(0, 0, 0, 0.4);
@@ -549,7 +545,9 @@ div.loading {
 .mdlButtonContainer {
   display: flex;
   justify-content: center;
+  align-items: center;
   padding: 16px;
+  gap: 16px;
 }
 
 .sliderValue {
@@ -573,12 +571,22 @@ div.loading {
 .house-info {
   display: flex;
   justify-content: center;
-  border-bottom: 1px solid lightgray;
-  gap: 40px;
+  border-bottom: 1px solid #D62311;
+  min-width: fit-content;
+  gap: 24px;
+}
+.house-info div {
+  display: flex;
+  align-items: center;
 }
 .house-info p {
-  margin: 8px 0;
-  color: gray;
+  margin: 8px;
+  font-weight: bold;
+}
+.house-info p:hover {
+  color: #D62311;
+  text-decoration: underline;
+  cursor: pointer;
 }
 
 .house-images {
@@ -626,4 +634,17 @@ div.loading {
   color: red;
   font-size: 12px;
   margin: 8px;
+}
+
+.upload-images {
+  display: flex;
+  justify-content: center;
+  margin: 10px;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.upload-images img {
+  border: 1px solid lightgray;
+  border-radius: 5px;
 }

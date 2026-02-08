@@ -17,7 +17,7 @@ function NewCustomer({show, close, reloadCustomers}) {
         if (lastName === "") {
             passedCheck = false;
         }
-        if (customerEmail.includes("@")) {
+        if (!customerEmail.includes("@")) {
             passedCheck = false;
         }
         if (number === "") {
