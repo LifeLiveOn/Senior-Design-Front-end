@@ -108,7 +108,6 @@ function CustomerTable() {
                 <div className="page-header">
                     <h1>Customer Search</h1>
                 </div>
-                
                 <div className="customer-search">
                     <input type="search" placeholder="Search" onChange={setSearchInput}></input>
                     <select name="Sort" onChange={setSelectInput}>

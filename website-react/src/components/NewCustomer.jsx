@@ -6,26 +6,22 @@ function NewCustomer({show, close, reloadCustomers}) {
     const [customerEmail, setCustomerEmail] = useState("");
     const [number, setNumber] = useState("");
     const [posting, setPosting] = useState(false);
+    const [showRequired, setShowRequired] = useState(false);
 
     const postCustomer = async () => {
         let passedCheck = true;
-        let alertMessage = "Please fill these fields:";
 
         if (firstName === "") {
             passedCheck = false;
-            alertMessage += "\n- First name";
         }
         if (lastName === "") {
             passedCheck = false;
-            alertMessage += "\n- Last name";
         }
-        if (customerEmail === "") {
+        if (customerEmail.includes("@")) {
             passedCheck = false;
-            alertMessage += "\n- Email";
         }
         if (number === "") {
             passedCheck = false;
-            alertMessage += "\n- Number";
         }
 
         if (passedCheck) {
@@ -64,7 +60,7 @@ function NewCustomer({show, close, reloadCustomers}) {
             }
         }
         else {
-            alert(alertMessage);
+            setShowRequired(true);
         }
     }
 
@@ -81,6 +77,14 @@ function NewCustomer({show, close, reloadCustomers}) {
         setNumber(event.target.value)
     }
 
+    const reset = () => {
+        setFirstName("")
+        setLastName("")
+        setCustomerEmail("")
+        setNumber("")
+        setShowRequired(false);
+    }
+
     if (show) {
         return (
             <>
@@ -88,27 +92,30 @@ function NewCustomer({show, close, reloadCustomers}) {
                 <div className="modal">
                     <div className="header">
                         <h2>New Customer</h2>
-                        <button className="close" onClick={close}>&times;</button>
+                        <button className="close" onClick={() => {close(); reset();}}>&times;</button>
                     </div>
                     <div className="body">
                         <div className="input-container">
                             <h4>Name:</h4>
                             <input type="text" placeholder="First" onChange={setFirstNameInput}></input>
                             <input type="text" placeholder="Last" onChange={setLastNameInput}></input>
+                            {showRequired && (firstName === "" || lastName === "") && (<label className="star">Required</label>)}
                         </div>
                         <div className="input-container">
                             <h4>Email:</h4>
                             <input type="text" placeholder="example.email@gmail.com" onChange={setEmailInput}></input>
+                            {showRequired && !customerEmail.includes("@") && (<label className="star">Include '@'</label>)}
                         </div>
                         <div className="input-container">
                             <h4>Number:</h4>
                             <input type="text" placeholder="123-456-7890" onChange={setNumberInput}></input>
+                            {showRequired && number === "" && (<label className="star">Required</label>)}
                         </div>
                         <div className="mdlButtonContainer">
                             { posting ? (
                                 <button disabled>Loading...</button>
                             ) : (
-                                <button className="primary" onClick={() => postCustomer()}>Create</button>
+                                <button className="primary" onClick={() => postCustomer()}>Submit</button>
                             )}
                         </div>
                     </div>

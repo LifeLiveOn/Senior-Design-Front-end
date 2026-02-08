@@ -134,7 +134,7 @@ function App() {
                     </div>
                 </div>
                 <div className="subheader">
-                    <h2>Images </h2>
+                    <h2>Images <input type="file" multiple></input></h2>
                     <p>Count: {house[0].images.length}</p>
                 </div>
                 <div className="house-images">

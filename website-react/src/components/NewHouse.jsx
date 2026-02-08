@@ -4,18 +4,16 @@ function NewHouse({show, close, reloadCustomers, customerId}) {
     const [address, setAddress] = useState("");
     const [description, setDescription] = useState("");
     const [posting, setPosting] = useState(false);
+    const [showRequired, setShowRequired] = useState(false);
 
     const postHouse = async () => {
         let passedCheck = true;
-        let alertMessage = "Please fill these fields:";
 
         if (address === "") {
             passedCheck = false;
-            alertMessage += "\n- Address";
         }
         if (description === "") {
             passedCheck = false;
-            alertMessage += "\n- Description";
         }
 
         if (passedCheck) {
@@ -54,7 +52,7 @@ function NewHouse({show, close, reloadCustomers, customerId}) {
             }
         }
         else {
-            alert(alertMessage);
+            setShowRequired(true);
         }
     }
 
@@ -65,6 +63,12 @@ function NewHouse({show, close, reloadCustomers, customerId}) {
         setDescription(event.target.value)
     }
 
+    const reset = () => {
+        setAddress("")
+        setDescription("")
+        setShowRequired(false);
+    }
+
     if (show) {
         return (
             <>
@@ -72,12 +76,13 @@ function NewHouse({show, close, reloadCustomers, customerId}) {
                 <div className="modal">
                     <div className="header">
                         <h2>New House</h2>
-                        <button className="close" onClick={close}>&times;</button>
+                        <button className="close" onClick={() => {close(); reset();}}>&times;</button>
                     </div>
                     <div className="body">
                         <div className="input-container">
                             <h4>Address:</h4>
                             <input type="text" placeholder="1234 Example Trl" onChange={setAddressInput}></input>
+                            {showRequired && address === "" && (<label className="star">Required</label>)}
                         </div>
                         <div className="input-container">
                             <h4>Roof Type:</h4>
@@ -91,13 +96,14 @@ function NewHouse({show, close, reloadCustomers, customerId}) {
                         <div className="input-container">
                             <h4>Description:</h4>
                             <textarea rows={5} cols={40} onChange={setDesctiptionInput}></textarea>
+                            {showRequired && address === "" && (<label className="star">Required</label>)}
                         </div>
                     </div>
                     <div className="mdlButtonContainer">
                         { posting ? (
                             <button disabled>Loading...</button>
                         ) : (
-                            <button className="primary" onClick={() => postHouse()}>Create</button>
+                            <button className="primary" onClick={() => postHouse()}>Submit</button>
                         )}
                     </div>
                 </div>

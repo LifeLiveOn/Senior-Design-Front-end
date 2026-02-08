@@ -103,6 +103,8 @@ button:disabled {
 
 input[type="search"],
 input[type="text"],
+input[type="email"],
+input[type="tel"],
 textarea,
 select {
   border: 1px solid lightgray;
@@ -111,12 +113,16 @@ select {
 }
 input[type="search"]:hover,
 input[type="text"]:hover,
+input[type="email"]:hover,
+input[type="tel"]:hover,
 textarea:hover,
 select:hover {
   border-bottom: 2px solid #403C3C;
 }
 input[type="search"]:focus,
 input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="tel"]:focus,
 textarea:focus,
 select:focus {
   background-color: #F7F0E4;
@@ -129,6 +135,28 @@ input[type="range"] {
 input[type="radio"] {
   accent-color: #D62311;
 }
+input[type="file"] {
+  padding: 8px;
+  border: 1px solid lightgray;
+  border-radius: 50ch;
+}
+input[type="file"]::file-selector-button {
+  background-color: #D62311;
+  color: white;
+  padding: 8px 24px;
+  border-radius: 50ch;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+}
+input[type="file"]::file-selector-button:hover {
+  background-color: #A11B13;
+  cursor: pointer;
+}
+input[type="file"]::file-selector-button:active {
+  background-color: #5f0f0b;
+}
+
 
 .site-title {
   font-size: 2rem;
@@ -498,9 +526,6 @@ div.loading {
   margin: 0;
   margin-bottom: 16px;
 }
-.input-container input {
-  margin-right: 8px;
-}
 .inputHeader {
   display: flex;
   align-content: center;
@@ -588,4 +613,10 @@ div.loading {
   padding: 24px;
   box-shadow: 0 0 3px rgba(33, 33, 33, 0.25);
   border-radius: 5px;
+}
+
+.star {
+  color: red;
+  font-size: 12px;
+  margin: 8px;
 }
