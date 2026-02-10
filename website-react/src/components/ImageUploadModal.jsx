@@ -22,20 +22,16 @@ function ImageUploadModal({show, close, reloadCustomers, houseId}) {
         if (passedCheck) {
             try {
                 for (const image of images) {
-                    const img = {
-                        house: houseId,
-                        file: image
-                    }
+                    const formData = new FormData();
+                    formData.append("house", houseId);
+                    formData.append("file", image);
 
                     setPosting(true);
 
                     const res = await fetch("https://backend-42686524573.europe-west1.run.app/api/v1/house-images/", {
                         method: "POST",
                         credentials: "include",
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify(img)
+                        body: formData
                     });
 
                     if (!res.ok || res == null)
