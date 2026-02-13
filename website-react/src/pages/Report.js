@@ -4,6 +4,7 @@ import ModelSettings from "../components/ModelSettings";
 import Badge from "../components/Badge";
 import ImageModal from "../components/ImageModal";
 import ImageUploadModal from "../components/ImageUploadModal";
+import { BACKEND_URL } from "../constants";
 
 
 function App() {
@@ -22,7 +23,7 @@ function App() {
 
     const loadCustomers = async () => {
         try {
-            const res = await fetch("https://backend-42686524573.europe-west1.run.app/api/v1/customers/" + customerId + "/", { //https://backend-42686524573.europe-west1.run.app/api/v1/customers/
+            const res = await fetch(BACKEND_URL + "/api/v1/customers/" + customerId + "/", { //https://backend-42686524573.europe-west1.run.app/api/v1/customers/
                 credentials: "include"
             });
 
@@ -82,7 +83,7 @@ function App() {
                         </div>
                         <div>
                             <label>Roof Type: </label>
-                            <p onClick={() => copyToClipboard("Asphalt")}>{"Asphalt"}</p>
+                            <p onClick={() => copyToClipboard(house[0].roof_type)}>{house[0].roof_type}</p>
                         </div>
                         <div>
                             <label>Customer: </label>
@@ -161,9 +162,11 @@ function App() {
                 </div>
                 <div className="house-images">
                     {
-                        house[0].images.map((image) => (
+                        house[0].images.map((image) => {return image.predicted_url === null ? (
+                            <img width={200} height={200} src={image.image_url} onClick={() => magnifyImage(image.image_url)}></img>
+                        ) : (
                             <img width={200} height={200} src={image.predicted_url} onClick={() => magnifyImage(image.predicted_url)}></img>
-                        ))
+                        )})
                     }
                 </div>
                 <br></br>

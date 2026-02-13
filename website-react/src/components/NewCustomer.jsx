@@ -1,88 +1,44 @@
 import { useState } from "react";
+import { BACKEND_URL } from "../constants";
 
 function NewCustomer({show, close, reloadCustomers}) {
-    const [firstName, setFirstName] = useState("");
-    const [lastName, setLastName] = useState("");
-    const [customerEmail, setCustomerEmail] = useState("");
-    const [number, setNumber] = useState("");
     const [posting, setPosting] = useState(false);
-    const [showRequired, setShowRequired] = useState(false);
 
-    const postCustomer = async () => {
-        let passedCheck = true;
+    const postCustomer = async (formData) => {
+        try {
+            setPosting(true);
 
-        if (firstName === "") {
-            passedCheck = false;
+            const res = await fetch(BACKEND_URL + "/api/v1/customers/", { //https://backend-42686524573.europe-west1.run.app/api/v1/customers/
+                method: "POST",
+                credentials: "include",
+                body: formData
+            });
+
+            if (!res.ok || res == null)
+                throw new Error(res.status);
+
+            const data = await res.json();
+            
+            console.log(data);
+            setPosting(false);
+            reloadCustomers();
+            close();
         }
-        if (lastName === "") {
-            passedCheck = false;
-        }
-        if (!customerEmail.includes("@")) {
-            passedCheck = false;
-        }
-        if (number === "") {
-            passedCheck = false;
-        }
-
-        if (passedCheck) {
-            const cust = {
-                name: firstName + " " + lastName,
-                email: customerEmail,
-                phone: number,
-            }
-
-            try {
-                setPosting(true);
-
-                const res = await fetch("https://backend-42686524573.europe-west1.run.app/api/v1/customers/", {
-                    method: "POST",
-                    credentials: "include",
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(cust)
-                });
-
-                if (!res.ok || res == null)
-                    throw new Error(res.status);
-
-                const data = await res.json();
-                
-                console.log(data);
-                setPosting(false);
-                reloadCustomers();
-                close();
-            }
-            catch (err) {
-                console.log("Error: ", err);
-                alert(err);
-                setPosting(false);
-            }
-        }
-        else {
-            setShowRequired(true);
+        catch (err) {
+            console.log("Error: ", err);
+            alert(err);
+            setPosting(false);
         }
     }
 
-    const setFirstNameInput = (event) => {
-        setFirstName(event.target.value)
-    }
-    const setLastNameInput = (event) => {
-        setLastName(event.target.value)
-    }
-    const setEmailInput = (event) => {
-        setCustomerEmail(event.target.value)
-    }
-    const setNumberInput = (event) => {
-        setNumber(event.target.value)
-    }
+    const submitForm = (event) => {
+        event.preventDefault();
 
-    const reset = () => {
-        setFirstName("")
-        setLastName("")
-        setCustomerEmail("")
-        setNumber("")
-        setShowRequired(false);
+        const formData = new FormData(event.target);
+        formData.append("name", formData.get("first") + " " + formData.get("last"));
+        formData.append("phone", "+" + formData.get("code") + formData.get("number"));
+        
+        postCustomer(formData);
     }
 
     if (show) {
@@ -92,32 +48,33 @@ function NewCustomer({show, close, reloadCustomers}) {
                 <div className="modal">
                     <div className="header">
                         <h2>New Customer</h2>
-                        <button className="close" onClick={() => {close(); reset();}}>&times;</button>
+                        <button className="close" onClick={close}>&times;</button>
                     </div>
                     <div className="body">
-                        <div className="input-container">
-                            <h4>Name:</h4>
-                            <input type="text" placeholder="First" onChange={setFirstNameInput}></input>
-                            <input type="text" placeholder="Last" onChange={setLastNameInput}></input>
-                            {showRequired && (firstName === "" || lastName === "") && (<label className="star">Required</label>)}
-                        </div>
-                        <div className="input-container">
-                            <h4>Email:</h4>
-                            <input type="text" placeholder="example.email@gmail.com" onChange={setEmailInput}></input>
-                            {showRequired && !customerEmail.includes("@") && (<label className="star">Include '@'</label>)}
-                        </div>
-                        <div className="input-container">
-                            <h4>Number:</h4>
-                            <input type="text" placeholder="123-456-7890" onChange={setNumberInput}></input>
-                            {showRequired && number === "" && (<label className="star">Required</label>)}
-                        </div>
-                        <div className="mdlButtonContainer">
-                            { posting ? (
-                                <button disabled>Loading...</button>
-                            ) : (
-                                <button className="primary" onClick={() => postCustomer()}>Submit</button>
-                            )}
-                        </div>
+                        <form onSubmit={submitForm}>
+                            <div className="input-container">
+                                <h4>Name:</h4>
+                                <input type="text" name="first" placeholder="First" required></input>
+                                <input type="text" name="last" placeholder="Last" required></input>
+                            </div>
+                            <div className="input-container">
+                                <h4>Email:</h4>
+                                <input type="email" name="email" placeholder="example.email@gmail.com" required pattern=".+gmail.com"></input>
+                            </div>
+                            <div className="input-container">
+                                <h4>Number:</h4>
+                                {"+ "}
+                                <input type="number" className="country-code" name="code" defaultValue={1} placeholder="#" required min={1} max={249} maxLength={3}></input>
+                                <input type="tel" className="phone" name="number" placeholder="##########" required maxLength={10} pattern="[0-9]{10}"></input>
+                            </div>
+                            <div className="mdlButtonContainer">
+                                { posting ? (
+                                    <button disabled>Loading...</button>
+                                ) : (
+                                    <button className="primary">Submit</button>
+                                )}
+                            </div>
+                        </form>
                     </div>
                 </div>
             </>

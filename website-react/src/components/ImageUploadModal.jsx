@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { BACKEND_URL } from "../constants";
 
 function ImageUploadModal({show, close, reloadCustomers, houseId}) {
     const [images, setImages] = useState([]);
@@ -28,7 +29,7 @@ function ImageUploadModal({show, close, reloadCustomers, houseId}) {
 
                     setPosting(true);
 
-                    const res = await fetch("https://backend-42686524573.europe-west1.run.app/api/v1/house-images/", {
+                    const res = await fetch(BACKEND_URL + "/api/v1/house-images/", { //https://backend-42686524573.europe-west1.run.app/api/v1/house-images/
                         method: "POST",
                         credentials: "include",
                         body: formData

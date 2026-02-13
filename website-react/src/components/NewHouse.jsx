@@ -1,75 +1,43 @@
 import { useState } from "react";
+import { BACKEND_URL } from "../constants";
 
 function NewHouse({show, close, reloadCustomers, customerId}) {
-    const [address, setAddress] = useState("");
-    const [roofType, setRoofType] = useState("asphalt");
-    const [description, setDescription] = useState("");
     const [posting, setPosting] = useState(false);
-    const [showRequired, setShowRequired] = useState(false);
 
-    const postHouse = async () => {
-        let passedCheck = true;
+    const postHouse = async (formData) => {
+        try {
+            setPosting(true);
 
-        if (address === "") {
-            passedCheck = false;
+            const res = await fetch(BACKEND_URL + "/api/v1/houses/", { //https://backend-42686524573.europe-west1.run.app/api/v1/houses/
+                method: "POST",
+                credentials: "include",
+                body: formData
+            });
+
+            if (!res.ok || res == null)
+                throw new Error(res.status);
+
+            const data = await res.json();
+            
+            console.log(data);
+            setPosting(false);
+            reloadCustomers();
+            close();
         }
-        if (description === "") {
-            passedCheck = false;
-        }
-
-        if (passedCheck) {
-            const house = {
-                customer: customerId,
-                address: address,
-                roof_type: roofType,
-                description: description
-            }
-
-            try {
-                setPosting(true);
-
-                const res = await fetch("https://backend-42686524573.europe-west1.run.app/api/v1/houses/", {
-                    method: "POST",
-                    credentials: "include",
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(house)
-                });
-
-                if (!res.ok || res == null)
-                    throw new Error(res.status);
-
-                const data = await res.json();
-                
-                console.log(data);
-                setPosting(false);
-                reloadCustomers();
-                close();
-            }
-            catch (err) {
-                console.log("Error: ", err);
-                alert(err);
-                setPosting(false);
-            }
-        }
-        else {
-            setShowRequired(true);
+        catch (err) {
+            console.log("Error: ", err);
+            alert(err);
+            setPosting(false);
         }
     }
 
-    const setAddressInput = (event) => {
-        setAddress(event.target.value)
-    }
-    const setDesctiptionInput = (event) => {
-        setDescription(event.target.value)
-    }
+    const submitForm = (event) => {
+        event.preventDefault();
 
-    const reset = () => {
-        setAddress("")
-        setRoofType("asphalt")
-        setDescription("")
-        setShowRequired(false);
+        const formData = new FormData(event.target);
+        formData.append("customer", customerId);
+        
+        postHouse(formData);
     }
 
     if (show) {
@@ -79,35 +47,38 @@ function NewHouse({show, close, reloadCustomers, customerId}) {
                 <div className="modal">
                     <div className="header">
                         <h2>New House</h2>
-                        <button className="close" onClick={() => {close(); reset();}}>&times;</button>
+                        <button className="close" onClick={close}>&times;</button>
                     </div>
                     <div className="body">
-                        <div className="input-container">
-                            <h4>Address:</h4>
-                            <input type="text" placeholder="1234 Example Trl" onChange={setAddressInput}></input>
-                            {showRequired && address === "" && (<label className="star">Required</label>)}
-                        </div>
-                        <div className="input-container">
-                            <h4>Roof Type:</h4>
-                            <select name="roofType">
-                                <option value={"asphalt"}>Asphalt</option>
-                                <option value={"slate"}>Slate</option>
-                                <option value={"metal"}>Metal</option>
-                                <option value={"wood"}>Wood</option>
-                            </select>
-                        </div>
-                        <div className="input-container">
-                            <h4>Description:</h4>
-                            <textarea rows={5} cols={40} onChange={setDesctiptionInput}></textarea>
-                            {showRequired && address === "" && (<label className="star">Required</label>)}
-                        </div>
-                    </div>
-                    <div className="mdlButtonContainer">
-                        { posting ? (
-                            <button disabled>Loading...</button>
-                        ) : (
-                            <button className="primary" onClick={() => postHouse()}>Submit</button>
-                        )}
+                        <form onSubmit={submitForm}>
+                            <div className="input-container">
+                                <h4>Location:</h4>
+                                <input type="text" name="city" placeholder="City" required></input>
+                                <input type="text" name="zip_code" placeholder="Zip" minLength={5} maxLength={9} required pattern="\d*"></input>
+                                <input type="text" name="address" placeholder="Address" required></input>
+                            </div>
+                            <div className="input-container">
+                                <h4>Roof Type:</h4>
+                                <select name="roof_type" required>
+                                    <option value={"Asphalt Shingles"}>Asphalt Shingles</option>
+                                    <option value={"Slate Shingles"}>Slate Shingles</option>
+                                    <option value={"Metal"}>Metal</option>
+                                    <option value={"Wood"}>Wood</option>
+                                    <option value={"Other"}>Other</option>
+                                </select>
+                            </div>
+                            <div className="input-container">
+                                <h4>Description:</h4>
+                                <textarea name="description" rows={5} cols={40} required></textarea>
+                            </div>
+                            <div className="mdlButtonContainer">
+                                { posting ? (
+                                    <button disabled>Loading...</button>
+                                ) : (
+                                    <button className="primary">Submit</button>
+                                )}
+                            </div>
+                        </form>
                     </div>
                 </div>
             </>

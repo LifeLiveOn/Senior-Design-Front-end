@@ -4,48 +4,48 @@ function HouseCard({customerId, houseId, address, description, imgCount, index})
 
     return (
         <Link to={"/report/" + customerId + "/" + houseId} className="site-title">
-        <div className="house-card houseCardNew">
-            {/*number + address */}
-            <div className="hcTop">
-                <div className="hcBadge">{index}</div>
+            <div className="house-card houseCardNew">
+                {/*number + address */}
+                <div className="hcTop">
+                    <div className="hcBadge">{index}</div>
 
-                <div className="hcTitleWrap">
-                    <div className="hcTitle">{address}</div>
+                    <div className="hcTitleWrap">
+                        <div className="hcTitle">{address}</div>
+                    </div>
                 </div>
-            </div>
 
-            {/* damage type */}
-            <div className="hcTypes">
-                <span className="hcType">Hail</span>
-                <span className="hcType">Wind</span>
-            </div>
+                {/* damage type */}
+                <div className="hcTypes">
+                    <span className="hcType">Hail</span>
+                    <span className="hcType">Wind</span>
+                </div>
 
-            {/* stats */}
-            <div className="hcStats">
+                {/* stats */}
+                <div className="hcStats">
+                    <div className="hcStat">
+                        <div className="hcStatValue">Moderate</div>
+                        <div className="hcStatLabel">Damage</div>
+                    </div>
+
                 <div className="hcStat">
-                    <div className="hcStatValue">Moderate</div>
-                    <div className="hcStatLabel">Damage</div>
+                    <div className="hcStatValue">4/5</div>
+                    <div className="hcStatLabel">Severity</div>
                 </div>
 
-            <div className="hcStat">
-                <div className="hcStatValue">4/5</div>
-                <div className="hcStatLabel">Severity</div>
-            </div>
+                <div className="hcStat">
+                    <div className="hcStatValue">{imgCount}</div>
+                    <div className="hcStatLabel">Photos</div>
+                </div>
+                </div>
 
-            <div className="hcStat">
-                <div className="hcStatValue">{imgCount}</div>
-                <div className="hcStatLabel">Photos</div>
-            </div>
-            </div>
+                {/* main point description */}
+                <div className="hcDescription">{description}</div>
 
-            {/* main point description */}
-            <div className="hcDescription">{description}</div>
-
-            {/* Bottom hint */}
-            <div className="hcReport">Click to view report →</div>
-        </div>
-    </Link>
-    )
+                {/* Bottom hint */}
+                <div className="hcReport">Click to view report →</div>
+            </div>
+        </Link>
+    );
 }
 
 export default HouseCard;

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import HouseCard from "./HouseCard";
 import NewCustomer from "./NewCustomer";
 import NewHouse from "./NewHouse";
+import { BACKEND_URL } from "../constants";
 
 function CustomerTable() {
     const [customers, setCustomers] = useState([]);
@@ -20,7 +21,7 @@ function CustomerTable() {
 
     const loadCustomers = async () => {
         try {
-            const res = await fetch("https://backend-42686524573.europe-west1.run.app/api/v1/customers/", { //https://backend-42686524573.europe-west1.run.app/api/v1/customers/
+            const res = await fetch(BACKEND_URL + "/api/v1/customers/", { //https://backend-42686524573.europe-west1.run.app/api/v1/customers/
                 credentials: "include"
             });
 
@@ -99,7 +100,7 @@ function CustomerTable() {
     // Display table
     if (failed) {
         // return <h1>Database connection failed</h1>;
-        return <a href="https://backend-42686524573.europe-west1.run.app/api/login/" className="login-button">
+        return <a href={BACKEND_URL + "/api/login/"} className="login-button">
             <button className="primary">Login</button>
         </a>
     }
