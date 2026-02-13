@@ -1,7 +1,9 @@
 import {Link} from "react-router-dom"
 
-function HouseCard({customerId, houseId, address, description, imgCount, index}) {
-    const houseImg = "https://www.bhg.com/thmb/TD9qUnFen4PBLDuB2hn9yhGXPv8=/1866x0/filters:no_upscale():strip_icc()/white-house-a-frame-section-c0a4a3b3-e722202f114e4aeea4370af6dbb4312b.jpg";
+function HouseCard({customerId, houseId, address, description, imgCount, index, roofType}) {
+    const MAX_HOUSE_IMAGES = 20;
+    const imgNum = (houseId % MAX_HOUSE_IMAGES) + 1 
+    const houseImg = `/house-images/house-${imgNum}.jpg`;
 
     return (
         <Link to={"/report/" + customerId + "/" + houseId} className="site-title">
@@ -20,6 +22,7 @@ function HouseCard({customerId, houseId, address, description, imgCount, index})
                      <div className="hcTitle">{address}</div>
 
                     <div className="hcTypes">
+                        {roofType && <span className="hcRoofType">Roof Type: {roofType}</span>}
                         <span className="hcType">Hail</span>
                         <span className="hcType">Wind</span>
                     </div>

@@ -429,7 +429,14 @@ div.loading {
 .hcTypes {
   display: flex;
   gap: 8px;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
+}
+
+.hcRoofType {
+  font-size: 12px;
+  color: #777;
+  font-weight: 600;
+  margin-top: -4px; /* pulls it closer to the title */
 }
 
 .hcType {
