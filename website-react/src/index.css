@@ -554,9 +554,6 @@ div.loading {
   align-content: center;
   align-items: center;
 }
-.input-container input:not(input[type="range"]){
-  margin-right: 16px;
-}
 
 .image-container {
   display: flex;
