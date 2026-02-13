@@ -542,8 +542,6 @@ div.loading {
 }
 
 .input-container {
-  display: flex;
-  gap: 16px;
   border-bottom: 1px solid lightgray;
   padding: 24px;
 }
@@ -555,6 +553,9 @@ div.loading {
   display: flex;
   align-content: center;
   align-items: center;
+}
+.input-container input:not(input[type="range"]){
+  margin-right: 16px;
 }
 
 .image-container {
