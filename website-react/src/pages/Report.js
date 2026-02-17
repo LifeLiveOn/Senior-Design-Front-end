@@ -53,7 +53,7 @@ function App() {
 
     const copyToClipboard = (text) => {
         navigator.clipboard.writeText(text);
-        alert("Copied " + text);
+        // alert("Copied " + text);
     }
 
     // Load Customers

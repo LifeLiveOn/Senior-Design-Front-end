@@ -2,8 +2,80 @@ import { useState } from "react";
 import { BACKEND_URL } from "../constants";
 
 function ModelSettings({show, close, houseId, reloadCustomers}) {
-    const [sliderValue, setSliderValue] = useState(40);
+    const DEFAULT_SLIDER_VALUE = 5;
+    const [sliderValue, setSliderValue] = useState(DEFAULT_SLIDER_VALUE);
     const [posting, setPosting] = useState(false);
+
+    const testfunc = (data) => {
+        // Estimations ----------------------------------------------------------------
+        const viewingAngle = 33.0;
+        const imageWidth = 640.0;
+        const distance = 24.0;
+        const rooftype = "Asphalt Shingles";
+
+        const footToPixel = (2 * distance * Math.tan(viewingAngle / 2)) / imageWidth;
+
+        // Material cost
+        let materialCostPerSqrFt = 1;
+        let labourCostPerSqrFt = 1;
+        if (rooftype === "Asphalt Shingles")
+        {
+            materialCostPerSqrFt = 1.1;
+            labourCostPerSqrFt = 2.75;
+        }
+        else if (rooftype === "Metal")
+        {
+            materialCostPerSqrFt = 11;
+            labourCostPerSqrFt = 6.00;
+        }
+
+        let area = 0;
+        let damageTypes = [];
+        for (const result of data.results)
+        {
+            // Gets total damage area
+            for(const box of result.detections.boxes)
+            {
+                let width = (box[2] - box[0]) * footToPixel;
+                let height = (box[3] - box[1]) * footToPixel;
+                area += width * height;
+            }
+
+            // Gets damage types
+            for (const label of result.detections.labels)
+            {
+                let type = "hail";
+                if (label === 0)
+                    type = "wind";
+                
+                if (!damageTypes.includes(type))
+                    damageTypes.push(type);
+            }
+        }
+
+        // Severity estimate
+        let severity = 0;
+        if (area > 800)
+            severity = 5;
+        else if (area > 600)
+            severity = 4;
+        else if (area > 400)
+            severity = 3;
+        else if (area > 200)
+            severity = 2;
+        else if (area > 0)
+            severity = 1;
+
+        // Cost estimate
+        const roofCost = area * materialCostPerSqrFt;
+        const labourCost = area * labourCostPerSqrFt;
+        const totalCost = roofCost + labourCost;
+
+        console.log("-Details-", "\nArea: \t\t\t" + area, "\nSeverity: \t\t" + severity);
+        console.log("-Cost-" + "\nRoof Cost: \t\t" + roofCost, "\nLabor Cost: \t" + labourCost, "\nTotal Cost: \t" + totalCost);
+        
+        //-----------------------------------------------------------------------------
+    }
     
     const generateReport = async (formData) => {
         try {
@@ -21,7 +93,9 @@ function ModelSettings({show, close, houseId, reloadCustomers}) {
             const data = await res.json();
             
             console.log(data);
-            setSliderValue(40);
+            testfunc(data);
+
+            setSliderValue(DEFAULT_SLIDER_VALUE);
             setPosting(false);
             reloadCustomers();
             close();
@@ -41,7 +115,7 @@ function ModelSettings({show, close, houseId, reloadCustomers}) {
         event.preventDefault();
 
         const formData = new FormData(event.target);
-        formData.append("threshold", formData.get("raw_threshold") / 100.0);
+        formData.append("threshold", formData.get("raw_threshold") / 10.0);
         
         generateReport(formData);
     }
@@ -53,7 +127,7 @@ function ModelSettings({show, close, houseId, reloadCustomers}) {
                 <div className="modal">
                     <div className="header">
                         <h2>Model Settings</h2>
-                        <button className="close" onClick={close}>&times;</button>
+                        <button className="close" onClick={() => {close(); setSliderValue(DEFAULT_SLIDER_VALUE);}}>&times;</button>
                     </div>
                     <div className="body">
                         <form onSubmit={submitForm}>
@@ -75,9 +149,9 @@ function ModelSettings({show, close, houseId, reloadCustomers}) {
                             <div className="input-container">
                                 <div className="inputHeader">
                                     <h4>Threshold: </h4>
-                                    <p className="sliderValue">{sliderValue + "%"}</p>
+                                    <p className="sliderValue">{(sliderValue * 10) + "%"}</p>
                                 </div>
-                                <input type="range" name="raw_threshold" id="threshold" onChange={setSliderInput} min={1} max={99} defaultValue={40} required></input>
+                                <input type="range" name="raw_threshold" id="threshold" onChange={setSliderInput} min={2} max={8} defaultValue={DEFAULT_SLIDER_VALUE} required></input>
                             </div>
                             <div className="mdlButtonContainer">
                                 { posting ? (

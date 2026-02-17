@@ -132,6 +132,7 @@ select:focus {
 input[type="range"] {
   accent-color: #D62311;
   width: 100%;
+  padding: 12px 0;
 }
 input[type="radio"] {
   accent-color: #D62311;
@@ -545,6 +546,9 @@ div.loading {
   border-bottom: 1px solid lightgray;
   padding: 24px;
 }
+.input-container label{
+  margin: 0 16px 0 4px;
+}
 .input-container h4 {
   margin: 0;
   margin-bottom: 16px;
@@ -552,7 +556,6 @@ div.loading {
 .inputHeader {
   display: flex;
   align-content: center;
-  align-items: center;
 }
 
 .image-container {
@@ -599,7 +602,7 @@ div.loading {
   display: flex;
   align-items: center;
 }
-.house-info p {
+.house-info label {
   margin: 8px;
   font-weight: bold;
 }
