@@ -269,6 +269,10 @@ div.loading {
   background-color: white;
   text-align: left;
 }
+.customer-table th:hover {
+  cursor: pointer;
+  user-select: none;
+}
 .customer-table tbody {
   border-top: 2px solid #D62311;
   border-bottom: 2px solid #D62311;

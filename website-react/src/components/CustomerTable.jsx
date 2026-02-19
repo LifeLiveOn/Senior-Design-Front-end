@@ -16,6 +16,8 @@ function CustomerTable() {
     const [pageCount, setPageCount] = useState(1);
     const [searchContent, setSearchContent] = useState("");
     const [searchType, setSearchType] = useState("Name");
+    const [sortBy, setSortBy] = useState("date")
+    const [sortAscending, setSortAscending] = useState(true)
 
     const customersPerPage = 6;
 
@@ -77,6 +79,78 @@ function CustomerTable() {
         }
     }
 
+    const getSortedCustomers = (customers) => {
+        if (sortBy === "date")
+        {
+            if (sortAscending)
+            {
+                return customers.sort((a, b) => {
+                    a = new Date(a.created_at.substring(0, 10));
+                    b = new Date(b.created_at.substring(0, 10));
+                    return a - b;
+                });
+            }
+            else
+            {
+                return customers.sort((a, b) => {
+                    a = new Date(a.created_at.substring(0, 10));
+                    b = new Date(b.created_at.substring(0, 10));
+                    return b - a;
+                });
+            }
+        }
+        else if (sortBy === "number")
+        {
+            if (sortAscending)
+            {
+                return customers.sort((a, b) => {
+                    a = parseInt(a.phone.substring(1, 12));
+                    b = parseInt(b.phone.substring(1, 12));
+                    return a < b ? -1 : (a > b ? 1 : 0);
+                });
+            }
+            else
+            {
+                return customers.sort((a, b) => {
+                    a = a.phone.substring(1, 12);
+                    b = b.phone.substring(1, 12);
+                    return a > b ? -1 : (a < b ? 1 : 0);
+                });
+            }
+        }
+        else
+        {
+            if (sortAscending)
+            {
+                return customers.sort((a, b) => {
+                    a = a[sortBy].toLowerCase();
+                    b = b[sortBy].toLowerCase();
+                    return a < b ? -1 : (a > b ? 1 : 0);
+                });
+            }
+            else
+            {
+                return customers.sort((a, b) => {
+                    a = a[sortBy].toLowerCase();
+                    b = b[sortBy].toLowerCase();
+                    return a > b ? -1 : (a < b ? 1 : 0);
+                });
+            }
+        }
+    }
+
+    const sort = (name) => {
+        if (sortBy === name)
+        {
+            setSortAscending(!sortAscending);
+        }
+        else
+        {
+            setSortBy(name)
+            setSortAscending(true);
+        }
+    }
+
     const setSearchInput = (event) => {
         setSearchContent(event.target.value)
     }
@@ -125,14 +199,14 @@ function CustomerTable() {
                 <table className="customer-table">
                     <thead>
                         <tr>
-                            <th>Date</th>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Number</th>
+                            <th onClick={() => sort("date")}>Date{sortBy === "date" && (sortAscending ? "▴" : "▾")}</th>
+                            <th onClick={() => sort("name")}>Name{sortBy === "name" && (sortAscending ? "▴" : "▾")}</th>
+                            <th onClick={() => sort("email")}>Email{sortBy === "email" && (sortAscending ? "▴" : "▾")}</th>
+                            <th onClick={() => sort("number")}>Number{sortBy === "number" && (sortAscending ? "▴" : "▾")}</th>
                         </tr>
                     </thead>
                     <tbody> {
-                        filteredCustomers.slice((pageNumber - 1) * customersPerPage, (pageNumber - 1) * customersPerPage + customersPerPage).map((customer) => (
+                        getSortedCustomers(filteredCustomers).slice((pageNumber - 1) * customersPerPage, (pageNumber - 1) * customersPerPage + customersPerPage).map((customer) => (
                             <>
                                 <tr key={customer.id} className="clickable" onClick={() => toggleCustomerId(customer.id)}>
                                     <td>{customer.created_at.substring(0, 10)}</td>

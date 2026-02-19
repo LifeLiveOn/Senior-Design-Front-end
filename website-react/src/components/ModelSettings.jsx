@@ -10,7 +10,7 @@ function ModelSettings({show, close, houseId, reloadCustomers}) {
         // Estimations ----------------------------------------------------------------
         const viewingAngle = 33.0;
         const imageWidth = 640.0;
-        const distance = 24.0;
+        const distance = 16.0;
         const rooftype = "Asphalt Shingles";
 
         const footToPixel = (2 * distance * Math.tan(viewingAngle / 2)) / imageWidth;
@@ -71,7 +71,7 @@ function ModelSettings({show, close, houseId, reloadCustomers}) {
         const labourCost = area * labourCostPerSqrFt;
         const totalCost = roofCost + labourCost;
 
-        console.log("-Details-", "\nArea: \t\t\t" + area, "\nSeverity: \t\t" + severity);
+        console.log("-Details-", "\nArea: \t\t\t" + area, "\nSeverity: \t\t" + severity, "\nDamage Types: \t" + damageTypes);
         console.log("-Cost-" + "\nRoof Cost: \t\t" + roofCost, "\nLabor Cost: \t" + labourCost, "\nTotal Cost: \t" + totalCost);
         
         //-----------------------------------------------------------------------------
