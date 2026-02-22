@@ -16,10 +16,8 @@ function App() {
     const [showSettings, setShowSettings] = useState(false);
     const [showImage, setShowImage] = useState(false);
     const [showUpload, setShowUpload] = useState(false);
+    const [showOriginalImg, setShowOriginalImg] = useState(false);
     const [imageSrc, setImageSrc] = useState("");
-
-    const windDamage = true;
-    const hailDamage = false;
 
     const loadCustomers = async () => {
         try {
@@ -66,6 +64,9 @@ function App() {
         return <h1>Database connection failed</h1>;
     }
     else if (houseLoaded) {
+        const windDamage = [house[0].damage_types].includes("wind");
+        const hailDamage = [house[0].damage_types].includes("hail");
+
         return (
             <>
                 <ModelSettings show={showSettings} close={() => setShowSettings(false)} houseId={houseId} reloadCustomers={loadCustomers}></ModelSettings>
@@ -74,7 +75,7 @@ function App() {
                 <div className="page-header">
                     <div className="container">
                         <h1>Report</h1>
-                        <button className="secondary" onClick={() => setShowSettings(true)}>⚙ Settings</button>
+                        <button className="gear" onClick={() => setShowSettings(true)}>☰</button>
                     </div>
                     <div className="house-info">
                         <div>
@@ -106,7 +107,7 @@ function App() {
                     <div className="content">
                         <div className="header">
                             <h3>Severity</h3>
-                            <Badge name={"4/5"} color={"tomato"}></Badge>
+                            <Badge name={house[0].severity + "/5"} color={"tomato"}></Badge>
                         </div>
                         <p>The roof has critical damage and needs immediate attention. </p>
                     </div>
@@ -158,11 +159,14 @@ function App() {
                     </div>
                 </div>
                 <div className="subheader">
-                    <h2>Images </h2>
+                    <h2>Images</h2>
+                </div>
+                <div>
+                    
                 </div>
                 <div className="house-images">
                     {
-                        house[0].images.map((image) => {return image.predicted_url === null ? (
+                        house[0].images.map((image) => {return showOriginalImg ? (
                             <img width={200} height={200} src={image.image_url} onClick={() => magnifyImage(image.image_url)}></img>
                         ) : (
                             <img width={200} height={200} src={image.predicted_url} onClick={() => magnifyImage(image.predicted_url)}></img>
@@ -170,8 +174,9 @@ function App() {
                     }
                 </div>
                 <br></br>
-                <div>
-                    <button className="secondary" onClick={() => setShowUpload(true)}>Upload</button>
+                <div className="button-container">
+                    <button className="secondary" onClick={() => setShowOriginalImg(!showOriginalImg)}>Toggle Originals</button>
+                    <button className="primary" onClick={() => setShowUpload(true)}>Upload</button>
                 </div>
             </>
         );

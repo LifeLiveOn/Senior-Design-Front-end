@@ -61,6 +61,17 @@ button.close:active:not(:disabled) {
   color: lightgray;
 }
 
+button.gear {
+  background-color: transparent;
+  color: #403C3C;
+  padding: 8px 16px;
+  font-size: 24px;
+  font-weight: bold;
+}
+button.gear:hover {
+  scale: 1.1;
+}
+
 button.secondary {
   background-color: white;
   color: #D62311;
@@ -215,11 +226,6 @@ input[type="file"]::file-selector-button:active {
   justify-content: center;
   align-items: center;
   margin-bottom: 16px;
-}
-.page-header div.container button{
-  height: 36px;
-  padding: 0 24px;
-  margin-left: 24px;
 }
 
 .subheader {
@@ -676,3 +682,7 @@ div.loading {
   border-radius: 5px;
 }
 
+.button-container {
+  display: flex;
+  gap: 16px;
+}

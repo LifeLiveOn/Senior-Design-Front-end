@@ -6,7 +6,7 @@ function ModelSettings({show, close, houseId, reloadCustomers}) {
     const [sliderValue, setSliderValue] = useState(DEFAULT_SLIDER_VALUE);
     const [posting, setPosting] = useState(false);
 
-    const testfunc = (data) => {
+    const updateHouse = async (data) => {
         // Estimations ----------------------------------------------------------------
         const viewingAngle = 33.0;
         const imageWidth = 640.0;
@@ -75,6 +75,30 @@ function ModelSettings({show, close, houseId, reloadCustomers}) {
         console.log("-Cost-" + "\nRoof Cost: \t\t" + roofCost, "\nLabor Cost: \t" + labourCost, "\nTotal Cost: \t" + totalCost);
         
         //-----------------------------------------------------------------------------
+
+        const formData = new FormData();
+        formData.append("severity", severity);
+        formData.append("damage_types", damageTypes);
+        formData.append("estimate", totalCost);
+
+        try {
+            const res = await fetch(BACKEND_URL + "/api/v1/houses/" + houseId, { //https://backend-42686524573.europe-west1.run.app/api/houses/" + houseId + "/run_prediction/
+                method: "PUT",
+                credentials: "include",
+                body: formData
+            });
+
+            if (!res.ok || res == null)
+                throw new Error(res.status);
+
+            const data = await res.json();
+            
+            console.log(data);
+        }
+        catch (err) {
+            console.log("Error: ", err);
+            alert(err);
+        }
     }
     
     const generateReport = async (formData) => {
@@ -93,7 +117,7 @@ function ModelSettings({show, close, houseId, reloadCustomers}) {
             const data = await res.json();
             
             console.log(data);
-            testfunc(data);
+            updateHouse(data);
 
             setSliderValue(DEFAULT_SLIDER_VALUE);
             setPosting(false);
