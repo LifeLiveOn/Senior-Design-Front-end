@@ -157,9 +157,9 @@ function ModelSettings({show, close, houseId, reloadCustomers}) {
                         <form onSubmit={submitForm}>
                             <div className="input-container">
                                 <h4>Inference mode:</h4>
-                                <input type="radio" name="mode" id="normal" defaultChecked required></input>
+                                <input type="radio" name="mode" value="normal" defaultChecked></input>
                                 <label htmlFor="normal">Normal</label>
-                                <input type="radio" name="mode" id="tiled"></input>
+                                <input type="radio" name="mode" value="tiled"></input>
                                 <label htmlFor="tiled">Tiled</label>
                             </div>
                             <div className="input-container">
