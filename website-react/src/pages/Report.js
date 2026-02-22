@@ -64,8 +64,13 @@ function App() {
         return <h1>Database connection failed</h1>;
     }
     else if (houseLoaded) {
-        const windDamage = [house[0].damage_types].includes("wind");
-        const hailDamage = [house[0].damage_types].includes("hail");
+        let windDamage = null;
+        let hailDamage = null;
+        if (house[0].damage_types !== null)
+        {
+            windDamage = house[0].damage_types.includes("wind");
+            hailDamage = house[0].damage_types.includes("hail");
+        }
 
         return (
             <>
@@ -153,7 +158,7 @@ function App() {
                     <div className="content">
                         <div className="header">
                             <h3>Estimate</h3>
-                            <Badge name={"$4,000"} color={"mediumseagreen"}></Badge>
+                            <Badge name={"$" + house[0].price_estimate} color={"mediumseagreen"}></Badge>
                         </div>
                         <p>This estimate has taken into account the total amount of damage along with the cost of asphalt shingles.</p>
                     </div>

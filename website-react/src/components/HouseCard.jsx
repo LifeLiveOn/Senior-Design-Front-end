@@ -1,12 +1,12 @@
 import {Link} from "react-router-dom"
 
-function HouseCard({customerId, houseId, address, description, imgCount, index, roofType}) {
+function HouseCard({customerId, house, index}) {
     const MAX_HOUSE_IMAGES = 20;
-    const imgNum = (houseId % MAX_HOUSE_IMAGES) + 1 
+    const imgNum = (house.id % MAX_HOUSE_IMAGES) + 1 
     const houseImg = `/house-images/house-${imgNum}.jpg`;
 
     return (
-        <Link to={"/report/" + customerId + "/" + houseId} className="site-title">
+        <Link to={"/report/" + customerId + "/" + house.id} className="site-title">
             <div className="house-card houseCardNew">
                 {/*image header*/}
                 <div className="hcMedia">
@@ -19,10 +19,10 @@ function HouseCard({customerId, houseId, address, description, imgCount, index, 
 
                 {/* damage type */}
                 <div className="hcBody">
-                     <div className="hcTitle">{address}</div>
+                     <div className="hcTitle">{house.address}</div>
 
                     <div className="hcTypes">
-                        {roofType && <span className="hcRoofType">Roof Type: {roofType}</span>}
+                        {house.roof_Type && <span className="hcRoofType">Roof Type: {house.roof_Type}</span>}
                         <span className="hcType">Hail</span>
                         <span className="hcType">Wind</span>
                     </div>
@@ -35,18 +35,18 @@ function HouseCard({customerId, houseId, address, description, imgCount, index, 
                         </div>
 
                         <div className="hcStat">
-                            <div className="hcStatValue">4/5</div>
+                            <div className="hcStatValue">{house.severity}/5</div>
                             <div className="hcStatLabel">Severity</div>
                         </div>
 
                         <div className="hcStat">
-                            <div className="hcStatValue">{imgCount}</div>
+                            <div className="hcStatValue">{house.images.length}</div>
                             <div className="hcStatLabel">Photos</div>
                         </div>
                     </div>
 
                     {/* main point description */}
-                    <div className="hcDescription">{description}</div>
+                    <div className="hcDescription">{house.description}</div>
 
                     {/* Bottom hint */}
                     <div className="hcReport">Click to view report →</div>

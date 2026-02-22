@@ -31,13 +31,29 @@ function NewHouse({show, close, reloadCustomers, customerId}) {
         }
     }
 
-    const submitForm = (event) => {
+    const submitForm = async (event) => {
         event.preventDefault();
 
-        const formData = new FormData(event.target);
-        formData.append("customer", customerId);
+        try {
+            setPosting(true);
+
+            const res = await fetch("/house-images/house-1.jpg");
+
+            if (!res.ok || res == null)
+                throw new Error(res.status);
+
+            const data = await res.blob();
+
+            const formData = new FormData(event.target);
+            formData.append("customer", customerId);
+            formData.append("default_image", data, "default.jpg");
         
-        postHouse(formData);
+            postHouse(formData);
+        }
+        catch (err) {
+            console.log("Error: ", err);
+            alert(err);
+        }
     }
 
     if (show) {

@@ -219,7 +219,7 @@ function CustomerTable() {
                                             <td colSpan={4}>
                                                 <div className="houses">
                                                     {customer.houses.map((house, index) => (
-                                                            <HouseCard customerId={customer.id} houseId={house.id} address={house.address} description={house.description} imgCount={house.images.length} index={index + 1} roofType={house.roof_type}></HouseCard>
+                                                            <HouseCard customerId={customer.id} house={house} index={index + 1}></HouseCard>
                                                         ))
                                                     }
                                                     <div className="addhcContainer">

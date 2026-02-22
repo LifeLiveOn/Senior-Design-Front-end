@@ -78,12 +78,12 @@ function ModelSettings({show, close, houseId, reloadCustomers}) {
 
         const formData = new FormData();
         formData.append("severity", severity);
-        formData.append("damage_types", damageTypes);
-        formData.append("estimate", totalCost);
+        formData.append("damage_types", JSON.stringify(damageTypes));
+        formData.append("price_estimate", totalCost.toFixed(2));
 
         try {
-            const res = await fetch(BACKEND_URL + "/api/v1/houses/" + houseId, { //https://backend-42686524573.europe-west1.run.app/api/houses/" + houseId + "/run_prediction/
-                method: "PUT",
+            const res = await fetch(BACKEND_URL + "/api/v1/houses/" + houseId + "/", {
+                method: "PATCH",
                 credentials: "include",
                 body: formData
             });
