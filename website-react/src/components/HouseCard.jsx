@@ -5,6 +5,9 @@ function HouseCard({customerId, house, index}) {
     const imgNum = (house.id % MAX_HOUSE_IMAGES) + 1 
     const houseImg = `/house-images/house-${imgNum}.jpg`;
 
+    const location = house.address.split(";");
+    const address = location[0] + ", " + location[1] + " " + location[2] + " " + location[3];
+
     return (
         <Link to={"/report/" + customerId + "/" + house.id} className="site-title">
             <div className="house-card houseCardNew">
@@ -19,7 +22,7 @@ function HouseCard({customerId, house, index}) {
 
                 {/* damage type */}
                 <div className="hcBody">
-                     <div className="hcTitle">{house.address}</div>
+                     <div className="hcTitle">{address}</div>
 
                     <div className="hcTypes">
                         {house.roof_Type && <span className="hcRoofType">Roof Type: {house.roof_Type}</span>}

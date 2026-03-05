@@ -85,16 +85,16 @@ function CustomerTable() {
             if (sortAscending)
             {
                 return customers.sort((a, b) => {
-                    a = new Date(a.created_at.substring(0, 10));
-                    b = new Date(b.created_at.substring(0, 10));
+                    a = new Date(a.created_at);
+                    b = new Date(b.created_at);
                     return a - b;
                 });
             }
             else
             {
                 return customers.sort((a, b) => {
-                    a = new Date(a.created_at.substring(0, 10));
-                    b = new Date(b.created_at.substring(0, 10));
+                    a = new Date(a.created_at);
+                    b = new Date(b.created_at);
                     return b - a;
                 });
             }

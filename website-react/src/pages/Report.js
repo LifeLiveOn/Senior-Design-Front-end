@@ -4,6 +4,7 @@ import ModelSettings from "../components/ModelSettings";
 import Badge from "../components/Badge";
 import ImageModal from "../components/ImageModal";
 import ImageUploadModal from "../components/ImageUploadModal";
+import EditHouse from "../components/EditHouse";
 import { BACKEND_URL } from "../constants";
 
 
@@ -16,6 +17,7 @@ function App() {
     const [showSettings, setShowSettings] = useState(false);
     const [showImage, setShowImage] = useState(false);
     const [showUpload, setShowUpload] = useState(false);
+    const [showEdit, setShowEdit] = useState(false);
     const [showOriginalImg, setShowOriginalImg] = useState(false);
     const [imageSrc, setImageSrc] = useState("");
 
@@ -64,6 +66,9 @@ function App() {
         return <h1>Database connection failed</h1>;
     }
     else if (houseLoaded) {
+        const location = house[0].address.split(";");
+        const address = location[0] + ", " + location[1] + " " + location[2] + " " + location[3];
+
         let windDamage = null;
         let hailDamage = null;
         if (house[0].damage_types !== null)
@@ -77,15 +82,16 @@ function App() {
                 <ModelSettings show={showSettings} close={() => setShowSettings(false)} houseId={houseId} reloadCustomers={loadCustomers}></ModelSettings>
                 <ImageModal show={showImage} close={() => setShowImage(false)} imageSrc={imageSrc}></ImageModal>
                 <ImageUploadModal show={showUpload} close={() => setShowUpload(false)} reloadCustomers={loadCustomers} houseId={houseId}></ImageUploadModal>
+                <EditHouse show={showEdit} close={() => setShowEdit(false)} reloadCustomers={loadCustomers} house={house[0]}></EditHouse>
                 <div className="page-header">
                     <div className="container">
                         <h1>Report</h1>
-                        <button className="gear" onClick={() => setShowSettings(true)}>☰</button>
+                        {/* <button className="gear" onClick={() => setShowSettings(true)}>☰</button> */}
                     </div>
                     <div className="house-info">
                         <div>
                             <label>Address: </label>
-                            <p onClick={() => copyToClipboard(house[0].address)}>{house[0].address}</p>
+                            <p onClick={() => copyToClipboard(address)}>{address}</p>
                         </div>
                         <div>
                             <label>Roof Type: </label>
@@ -103,6 +109,10 @@ function App() {
                             <label>Number: </label>
                             <p onClick={() => copyToClipboard(customer.phone)}>{customer.phone}</p>
                         </div>
+                    </div>
+                    <div className="button-container-spread">
+                        <button className="primary-subtle" onClick={() => setShowSettings(true)}>Model settings & report generation</button>
+                        <button className="secondary-subtle" onClick={() => setShowEdit(true)}>Edit house details</button>
                     </div>
                 </div>
                 <div className="subheader">
@@ -180,8 +190,8 @@ function App() {
                 </div>
                 <br></br>
                 <div className="button-container">
-                    <button className="secondary" onClick={() => setShowOriginalImg(!showOriginalImg)}>Toggle Originals</button>
                     <button className="primary" onClick={() => setShowUpload(true)}>Upload</button>
+                    <button className="secondary" onClick={() => setShowOriginalImg(!showOriginalImg)}>Toggle Boxes</button>
                 </div>
             </>
         );
