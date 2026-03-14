@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 220" role="img" aria-label="Magnifying glass roof drone icon">
+  <defs>
+    <style>
+      .rim { fill: none; stroke: #4A4A4A; stroke-width: 12; stroke-linecap: round; stroke-linejoin: round; }
+      .handle { stroke: #4A4A4A; stroke-width: 14; stroke-linecap: round; }
+      .red { fill: #D84334; }
+      .white { fill: #FFFFFF; }
+      .gray { fill: #4A4A4A; }
+      .stroke-white { stroke: #FFFFFF; stroke-width: 3; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    </style>
+    <clipPath id="lensClip">
+      <circle cx="100" cy="100" r="66"/>
+    </clipPath>
+  </defs>
+
+  <!-- magnifying glass -->
+  <circle class="rim" cx="100" cy="100" r="72"/>
+  <line class="handle" x1="151" y1="151" x2="183" y2="183"/>
+
+  <!-- contents inside lens -->
+  <g clip-path="url(#lensClip)">
+    <!-- top red field -->
+    <path class="red" d="M28 28h144v92L100 66 28 120Z"/>
+    <!-- bottom roof -->
+    <path class="white" d="M40 126 100 84l60 42v40H40Z"/>
+    <path class="red" d="M48 126 100 90l52 36v8l-52-36-52 36Z"/>
+
+    <!-- drone -->
+    <g transform="translate(100 68)">
+      <circle cx="0" cy="0" r="4" fill="#BDBDBD"/>
+      <rect class="white" x="-18" y="-8" rx="8" ry="8" width="36" height="16"/>
+      <rect class="white" x="-36" y="-10" rx="4" ry="4" width="12" height="8"/>
+      <rect class="white" x="24" y="-10" rx="4" ry="4" width="12" height="8"/>
+      <rect class="white" x="-28" y="14" rx="4" ry="4" width="10" height="8"/>
+      <rect class="white" x="18" y="14" rx="4" ry="4" width="10" height="8"/>
+      <line class="stroke-white" x1="-6" y1="8" x2="-28" y2="18"/>
+      <line class="stroke-white" x1="6" y1="8" x2="28" y2="18"/>
+      <line class="stroke-white" x1="-10" y1="-4" x2="-30" y2="-8"/>
+      <line class="stroke-white" x1="10" y1="-4" x2="30" y2="-8"/>
+      <ellipse class="stroke-white" cx="-36" cy="-12" rx="18" ry="8"/>
+      <ellipse class="stroke-white" cx="36" cy="-12" rx="18" ry="8"/>
+      <ellipse class="stroke-white" cx="-24" cy="20" rx="14" ry="6"/>
+      <ellipse class="stroke-white" cx="24" cy="20" rx="14" ry="6"/>
+    </g>
+
+    <!-- house window -->
+    <g transform="translate(100 140)">
+      <rect class="gray" x="-12" y="-12" width="10" height="10" rx="1"/>
+      <rect class="gray" x="2" y="-12" width="10" height="10" rx="1"/>
+      <rect class="gray" x="-12" y="2" width="10" height="10" rx="1"/>
+      <rect class="gray" x="2" y="2" width="10" height="10" rx="1"/>
+    </g>
+  </g>
+</svg>

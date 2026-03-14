@@ -4,11 +4,14 @@ function NavBar() {
     return (
         <nav className="nav-bar">
             <Link to="/" className="site-title">
-                <div>
-                    < span className="title-over">Over</span>
-                    <span className="title-watch">Watch</span>
+                <img src="/roof_logo.svg" alt="OverWatch logo" className="nav-logo" />
+                <div className="title-text">   
+                    <div>
+                        < span className="title-over">Over</span>
+                        <span className="title-watch">Watch</span>
+                    </div>
+                    <span className="title-sub">by Steak Farm</span>
                 </div>
-                <span className="title-sub">by Steak Farm</span>
             </Link>
             <ul>
                 <li>
