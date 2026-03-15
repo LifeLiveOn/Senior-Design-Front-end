@@ -6,7 +6,7 @@ function HouseCard({customerId, house, index}) {
     const houseImg = `/house-images/house-${imgNum}.jpg`;
 
     return (
-        <Link to={"/report/" + customerId + "/" + house.id} className="site-title">
+        <Link to={"/report/" + customerId + "/" + house.id} className="house-card-link">
             <div className="house-card houseCardNew">
                 {/*image header*/}
                 <div className="hcMedia">
