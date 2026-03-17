@@ -3,6 +3,7 @@ import HouseCard from "./HouseCard";
 import NewCustomer from "./NewCustomer";
 import NewHouse from "./NewHouse";
 import { BACKEND_URL } from "../constants";
+import EditCustomer from "./EditCustomer";
 
 function CustomerTable() {
     const [customers, setCustomers] = useState([]);
@@ -11,6 +12,7 @@ function CustomerTable() {
     const [failed, setFailed] = useState(false);
     const [showNewCustomer, setShowNewCustomer] = useState(false);
     const [showNewHouse, setShowNewHouse] = useState(false);
+    const [showEdit, setShowEdit] = useState(false);
     const [customerId, setCustomerId] = useState(-1);
     const [pageNumber, setPageNumber] = useState(1);
     const [pageCount, setPageCount] = useState(1);
@@ -183,6 +185,7 @@ function CustomerTable() {
             <>
                 <NewCustomer show={showNewCustomer} close={() => setShowNewCustomer(false)} reloadCustomers={loadCustomers}></NewCustomer>
                 <NewHouse show={showNewHouse} close={() => setShowNewHouse(false)} reloadCustomers={loadCustomers} customerId={customerId}></NewHouse>
+                <EditCustomer show={showEdit} close={() => setShowEdit(false)} reloadCustomers={loadCustomers} customer={customers.filter((customer) => customer.id === customerId)[0]}></EditCustomer>
                 <div className="page-header">
                     <h1>Customer Search</h1>
                 </div>
@@ -217,6 +220,9 @@ function CustomerTable() {
                                 {customerId === customer.id && (
                                         <tr className="expanded">
                                             <td colSpan={4}>
+                                                <div className="button-container-customer">
+                                                    <button className="secondary-subtle" onClick={() => setShowEdit(true)}>Edit customer details</button>
+                                                </div>
                                                 <div className="houses">
                                                     {customer.houses.map((house, index) => (
                                                             <HouseCard customerId={customer.id} house={house} index={index + 1}></HouseCard>

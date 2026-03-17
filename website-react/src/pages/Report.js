@@ -110,8 +110,8 @@ function App() {
                             <p onClick={() => copyToClipboard(customer.phone)}>{customer.phone}</p>
                         </div>
                     </div>
-                    <div className="button-container-spread">
-                        <button className="primary-subtle" onClick={() => setShowSettings(true)}>Model settings & report generation</button>
+                    <div className="button-container-house">
+                        <button className="secondary-subtle" onClick={() => setShowSettings(true)}>Model settings & report generation</button>
                         <button className="secondary-subtle" onClick={() => setShowEdit(true)}>Edit house details</button>
                     </div>
                 </div>

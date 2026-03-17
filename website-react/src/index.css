@@ -428,7 +428,7 @@ div.loading {
   background-color: white;
   width: 230px;
   height: auto;
-  margin: 20px;
+  margin: 0 20px 20px 20px;
   overflow: hidden;
   border: 1px solid lightgray;
   border-radius: 12px;
@@ -796,9 +796,16 @@ div.loading {
   gap: 16px;
 }
 
-.button-container-spread {
+.button-container-house {
   display: flex;
-  justify-content: left;
+  justify-content: right;
   margin-top: 12px;
   gap: 16px;
+}
+
+.button-container-customer {
+  background-color: #F7F0E4;
+  display: flex;
+  justify-content: right;
+  padding: 8px 20px 0 20px;
 }
