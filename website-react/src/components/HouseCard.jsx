@@ -9,7 +9,7 @@ function HouseCard({customerId, house, index}) {
     const address = location[0] + ", " + location[1] + " " + location[2] + " " + location[3];
 
     return (
-        <Link to={"/report/" + customerId + "/" + house.id} className="site-title">
+        <Link to={"/report/" + customerId + "/" + house.id} className="house-card-link">
             <div className="house-card houseCardNew">
                 {/*image header*/}
                 <div className="hcMedia">

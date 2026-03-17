@@ -1,11 +1,13 @@
-* {
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');* {
   margin: 0;
   padding: 0;
 }
 
+
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  font-family: 'Nunito Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -21,6 +23,7 @@ code {
 h1 {
   text-align: center;
   font-size: 48px;
+  font-weight:700;
 }
 
 h2 {
@@ -193,36 +196,121 @@ input[type="file"]::file-selector-button:active {
 
 
 .site-title {
-  font-size: 2rem;
-  font-weight: bold;
+  display:flex;
+  flex-direction: row;
+  align-items: center; 
+  flex: 1;
+  gap: 5px;
+  color: inherit;
+  line-height: 1;
+  text-decoration: none;
+}
+
+.title-text {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.title-over {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #D62311;
+}
+
+.title-watch {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #403C3C;
+}
+
+.title-sub {
+  font-size: 0.5rem;
+  font-weight: 600;
+  color: gray;
+}
+
+.nav-logo {
+  height: 35px;
+  width: 35px;
+}
+
+.nav-bar .site-title {
+  flex: 1;       
 }
 
 .nav-bar {
-  background-color: white;
+  position: relative;
+  padding: 0.4rem 3rem;
+  background: white;
   display: flex;
+  justify-content: flex-start;  
+  align-items: center;
   gap: 2rem;
   border-bottom: 1px solid lightgray;
-  justify-content: center;
-  align-items: stretch;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.09);
+
 }
+.nav-bar-inner {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
 .nav-bar ul {
+  justify-content: center;
   display: flex;
   padding: 0;
   margin: 0;
-  gap: 1rem;
+  gap: 2rem;
   list-style: none;
+  flex: 1; 
 }
+
 .nav-bar a {
   color: inherit;
   display: flex;
   padding: 0.25rem;
-  height: 100%;
   align-items: center;
   text-decoration: none;
 }
-.nav-bar li:hover {
-  background-color: #D62311;
-  color: white;
+
+.nav-bar ul a{
+  position: relative;
+  font-size: 1rem;
+  font-weight: 500;
+  
+  letter-spacing: 0.02em;
+}
+
+.nav-bar ul a::after{
+  content: "";
+  position: absolute;
+  bottom: 0px;
+  left: 50%;
+  width: 0;
+  height: 2.8px;
+  background: #D62311;
+  transform: translateX(-50%);
+  transition: width 0.4s ease;
+}
+
+.nav-bar ul a:hover::after{
+  width: 100%;
+}
+
+.nav-logout {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  background:none;
+  border: none;
+  color:#D62311;
+  font-weight: bold;
+  font-size: .85rem;
+  cursor: pointer;
 }
 
 .main-body {
@@ -230,8 +318,11 @@ input[type="file"]::file-selector-button:active {
   justify-content: center;
   flex-direction: column;
 
-  margin: 40px 10vw;
-  padding: 0;
+  margin: 40px auto;
+  padding: 0 10vw;
+  max-width: 1200px;
+  width: 100%;
+
 }
 
 .page-header {
@@ -327,13 +418,11 @@ div.loading {
   max-width: 100%;
 }
 
-/* removes blue underline when clicked*/
-.site-title {
-  text-decoration: none;
-  color: inherit;
-  display: inline-block;
-}
 
+.house-card-link {
+  color: inherit;
+  text-decoration: none;
+}
 
 .house-card {
   background-color: white;
@@ -405,14 +494,20 @@ div.loading {
 
 .hcOverlay {
   position: absolute;
-  inset: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 50%; 
+  
   background: linear-gradient(
     to bottom,
-    rgba(255,255,255,0.12),
-    rgba(255,255,255,0.15),
-    rgba(255,255,255,0.8)
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.2) 60%,
+    rgba(255, 255, 255, 1) 100%
   );
+
   z-index: 1;
+  pointer-events: none;
 }
 
 
@@ -462,20 +557,15 @@ div.loading {
   flex-wrap: nowrap;
 }
 
-.hcRoofType {
-  font-size: 12px;
-  color: #777;
-  font-weight: 600;
-  margin-top: -4px; /* pulls it closer to the title */
-}
+
 
 .hcType {
   font-size: 12px;
+  font-weight: 600;
   padding: 6px 10px;
   border-radius: 999px;
   background: #f2f2f2;
   border: 1px solid #e0e0e0;
-  font-weight: 600;
 }
 
 /* stats row */
