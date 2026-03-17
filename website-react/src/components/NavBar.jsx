@@ -1,4 +1,5 @@
 import {Link} from "react-router-dom"
+import { BACKEND_URL } from "../constants";
 
 function NavBar() {
     return (
@@ -22,7 +23,9 @@ function NavBar() {
                         <Link to="/about">About</Link>
                     </li>
                 </ul>
-                <button className="nav-logout">Log Out</button>
+                <a href={BACKEND_URL + "/api/login/"}>
+                    <button className="nav-logout">Log Out</button>
+                </a>
             </div>
         </nav>
     );
