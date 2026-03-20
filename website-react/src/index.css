@@ -213,13 +213,13 @@ input[type="file"]::file-selector-button:active {
 }
 
 .title-over {
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   font-weight: 700;
   color: #D62311;
 }
 
 .title-watch {
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   font-weight: 700;
   color: #403C3C;
 }
@@ -231,8 +231,8 @@ input[type="file"]::file-selector-button:active {
 }
 
 .nav-logo {
-  height: 35px;
-  width: 35px;
+  height: 45px;
+  width: 45px;
 }
 
 .nav-bar .site-title {
@@ -347,6 +347,24 @@ input[type="file"]::file-selector-button:active {
 }
 .subheader p {
   margin: 0;
+}
+
+.toggle-eye {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.toggle-eye i {
+  font-size: 1.4rem;
+  cursor: pointer;
+  color: #403C3C;
+  opacity: 0.7;
+  cursor: pointer;
+}
+
+.toggle-eye i:hover {
+  opacity: 1;
 }
 
 div.loading {
@@ -752,6 +770,26 @@ div.loading {
   padding: 2px 8px;
   border-radius: 5px;
   font-weight: bold;
+}
+
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 1rem;
+  color: gray;
+  font-weight: 600;
+  border-bottom: 1px solid lightgray;
+  width: 100vw;
+  margin-left: calc(-1 * 10vw);   /* pulls it out of main-body padding */
+  box-sizing: border-box;
+  padding: 16px 10vw;
+  margin-top: -40PX;
+}
+
+.breadcrumb a{
+  color: black;
+  text-decoration: none;
 }
 
 .summary {

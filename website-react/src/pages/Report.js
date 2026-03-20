@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import ModelSettings from "../components/ModelSettings";
 import Badge from "../components/Badge";
 import ImageModal from "../components/ImageModal";
@@ -83,6 +84,11 @@ function App() {
                 <ImageModal show={showImage} close={() => setShowImage(false)} imageSrc={imageSrc}></ImageModal>
                 <ImageUploadModal show={showUpload} close={() => setShowUpload(false)} reloadCustomers={loadCustomers} houseId={houseId}></ImageUploadModal>
                 <EditHouse show={showEdit} close={() => setShowEdit(false)} reloadCustomers={loadCustomers} house={house[0]}></EditHouse>
+                <div className="breadcrumb">
+                    <Link to="/customers">Customers</Link>
+                    <span>&gt;</span>
+                    <span>Report</span>
+                </div>
                 <div className="page-header">
                     <div className="container">
                         <h1>Report</h1>
@@ -174,7 +180,14 @@ function App() {
                     </div>
                 </div>
                 <div className="subheader">
-                    <h2>Images</h2>
+                    <div className="toggle-eye">
+                        <h2>Images</h2>
+                        <i
+                            className={showOriginalImg ? "fa-solid fa-eye-slash" : "fa-solid fa-eye"}
+                            onClick={() => setShowOriginalImg(!showOriginalImg)}
+                            title={showOriginalImg ? "Hide Boxes" : "Show Boxes"}
+                        />
+                    </div>
                 </div>
                 <div>
                     
@@ -191,7 +204,6 @@ function App() {
                 <br></br>
                 <div className="button-container">
                     <button className="primary" onClick={() => setShowUpload(true)}>Upload</button>
-                    <button className="secondary" onClick={() => setShowOriginalImg(!showOriginalImg)}>Toggle Boxes</button>
                 </div>
             </>
         );
