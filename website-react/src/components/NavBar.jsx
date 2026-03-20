@@ -23,7 +23,7 @@ function NavBar() {
                         <Link to="/about">About</Link>
                     </li>
                 </ul>
-                <a href={BACKEND_URL + "/api/login/"}>
+                <a href={BACKEND_URL + "/api/login/"} className="nav-logout">
                     <button className="nav-logout">Log Out</button>
                 </a>
             </div>
