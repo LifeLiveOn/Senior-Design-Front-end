@@ -185,7 +185,7 @@ function App() {
                         <i
                             className={showOriginalImg ? "fa-solid fa-eye-slash" : "fa-solid fa-eye"}
                             onClick={() => setShowOriginalImg(!showOriginalImg)}
-                            title={showOriginalImg ? "Hide Boxes" : "Show Boxes"}
+                            title={showOriginalImg ? "Show Boxes" : "Hide Boxes"}
                         />
                     </div>
                 </div>
