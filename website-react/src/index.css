@@ -255,7 +255,7 @@ input[type="file"]::file-selector-button:active {
   display: flex;
   align-items: center;
   width: 100%;
-  max-width: 1200px;
+  max-width: 1300px;
   margin: 0 auto;
 }
 
@@ -779,11 +779,16 @@ div.loading {
   color: gray;
   font-weight: 600;
   border-bottom: 1px solid lightgray;
+
   width: 100vw;
-  margin-left: calc(-1 * 10vw);   /* pulls it out of main-body padding */
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;   
   box-sizing: border-box;
-  padding: 16px 10vw;
-  margin-top: -40PX;
+  padding: 12px 19.5rem;
+  margin-top: -40px;
 }
 
 .breadcrumb a{
