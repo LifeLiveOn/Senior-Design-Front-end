@@ -85,9 +85,11 @@ function App() {
                 <ImageUploadModal show={showUpload} close={() => setShowUpload(false)} reloadCustomers={loadCustomers} houseId={houseId}></ImageUploadModal>
                 <EditHouse show={showEdit} close={() => setShowEdit(false)} reloadCustomers={loadCustomers} house={house[0]}></EditHouse>
                 <div className="breadcrumb">
-                    <Link to="/customers">Customers</Link>
-                    <span>&gt;</span>
-                    <span>Report</span>
+                    <div className="breadcrumb-inner">
+                        <Link to="/customers">Customers </Link>
+                        <span>&gt;</span>
+                        <span> Report</span>
+                    </div>
                 </div>
                 <div className="page-header">
                     <div className="container">
