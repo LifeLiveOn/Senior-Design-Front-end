@@ -47,6 +47,9 @@ function NewHouse({show, close, reloadCustomers, customerId}) {
             const formData = new FormData(event.target);
             formData.append("customer", customerId);
             formData.append("default_image", data, "default.jpg");
+
+            const address = formData.get("address") + ";" + formData.get("city") + ";" + formData.get("state") + ";" + formData.get("zip_code");
+            formData.set("address", address);
         
             postHouse(formData);
         }
@@ -69,6 +72,9 @@ function NewHouse({show, close, reloadCustomers, customerId}) {
                         <form onSubmit={submitForm}>
                             <div className="input-container">
                                 <h4>Location:</h4>
+                                <select name="state" required>
+                                    <option value={"TX"}>TX</option>
+                                </select>
                                 <input type="text" name="city" placeholder="City" required></input>
                                 <input type="text" name="zip_code" placeholder="Zip" minLength={5} maxLength={9} required pattern="\d*"></input>
                                 <input type="text" name="address" placeholder="Address" required></input>

@@ -130,7 +130,18 @@ function App() {
                             <h3>Severity</h3>
                             <Badge name={house[0].severity + "/5"} color={"tomato"}></Badge>
                         </div>
-                        <p>The roof has critical damage and needs immediate attention. </p>
+                        
+                        { house[0].severity >= 4 ? (
+                            <p>The roof has critical damage and needs immediate attention. </p>
+                        ) : house[0].severity >= 2 ? (
+                            <p>
+                                The roof has substantial damage needs repairs.
+                            </p>
+                        ) : (
+                            <p>
+                                The roof has minimal damage, but any amount of damage leaves the roof vulnerable.
+                            </p>
+                        )}
                     </div>
                     <div className="content">
                         <div className="header">
@@ -196,8 +207,8 @@ function App() {
                     {
                         house[0].images.map((image) => {return showOriginalImg ? (
                             <img width={200} height={200} src={image.image_url} onClick={() => magnifyImage(image.image_url)}></img>
-                        ) : (
-                            <img width={200} height={200} src={image.predicted_url} onClick={() => magnifyImage(image.predicted_url)}></img>
+                        ) :  (
+                            <img width={200} height={200} src={image.predicted_url != null ? image.predicted_url : image.image_url} onClick={() => magnifyImage(image.predicted_url)}></img>
                         )})
                     }
                 </div>

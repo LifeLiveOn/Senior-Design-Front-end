@@ -72,7 +72,7 @@ function ModelSettings({show, close, houseId, reloadCustomers}) {
         const totalCost = roofCost + labourCost;
 
         console.log("-Details-", "\nArea: \t\t\t" + area, "\nSeverity: \t\t" + severity, "\nDamage Types: \t" + damageTypes);
-        console.log("-Cost-" + "\nRoof Cost: \t\t" + roofCost, "\nLabor Cost: \t" + labourCost, "\nTotal Cost: \t" + totalCost);
+        console.log("-Cost-" + "\nRoof Cost: \t\t" + roofCost, "\nLabor Cost: \t" + labourCost, "\nTotal Cost: \t" + totalCost.toFixed(2));
         
         //-----------------------------------------------------------------------------
 
@@ -117,8 +117,8 @@ function ModelSettings({show, close, houseId, reloadCustomers}) {
             const data = await res.json();
             
             console.log(data);
-            updateHouse(data);
-
+            await updateHouse(data);
+            console.log("hello")
             setSliderValue(DEFAULT_SLIDER_VALUE);
             setPosting(false);
             reloadCustomers();

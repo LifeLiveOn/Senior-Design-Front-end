@@ -319,8 +319,7 @@ input[type="file"]::file-selector-button:active {
   flex-direction: column;
 
   margin: 40px auto;
-  padding: 0 10vw;
-  max-width: 1200px;
+  max-width: 1300px;
   width: 100%;
 
 }
@@ -733,7 +732,7 @@ div.loading {
   justify-content: center;
   border-bottom: 1px solid #D62311;
   min-width: fit-content;
-  gap: 24px;
+  gap: 8px;
 }
 .house-info div {
   display: flex;
@@ -845,5 +844,5 @@ div.loading {
   background-color: #F7F0E4;
   display: flex;
   justify-content: right;
-  padding: 8px 20px 0 20px;
+  padding: 4px 20px 4px 20px;
 }
