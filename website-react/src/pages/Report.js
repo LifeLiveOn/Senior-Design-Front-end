@@ -48,8 +48,8 @@ function App() {
         }
     }
 
-    const magnifyImage = (src) => {
-        setImageSrc(src);
+    const magnifyImage = (originalSrc, predictedSrc) => {
+        setImageSrc({original: originalSrc, predicted: predictedSrc});
         setShowImage(true);
     }
 
@@ -209,9 +209,9 @@ function App() {
                     <div className="house-images">
                         {
                             house[0].images.map((image) => {return showOriginalImg ? (
-                                <img width={200} height={200} src={image.image_url} onClick={() => magnifyImage(image.image_url)}></img>
+                                <img width={200} height={200} src={image.image_url} onClick={() => magnifyImage(image.image_url, image.image_url)}></img>
                             ) : (
-                                <img width={200} height={200} src={image.predicted_url != null ? image.predicted_url : image.image_url} onClick={() => magnifyImage(image.predicted_url != null ? image.predicted_url : image.image_url)}></img>
+                                <img width={200} height={200} src={image.predicted_url != null ? image.predicted_url : image.image_url} onClick={() => magnifyImage(image.image_url, image.predicted_url != null ? image.predicted_url : image.image_url)}></img>
                             )})
                         }
                     </div>

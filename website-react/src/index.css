@@ -840,6 +840,18 @@ div.loading {
   border-radius: 5px;
 }
 
+.modal-eye-toggle {
+  font-size: 1.4rem;
+  color: white;
+  cursor: pointer;
+  opacity: 0.8;
+  padding: 8px 16px;
+}
+
+.modal-eye-toggle:hover {
+  opacity: 1;
+}
+
 .button-container {
   display: flex;
   gap: 16px;
