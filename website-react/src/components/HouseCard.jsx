@@ -27,7 +27,7 @@ function HouseCard({customerId, house, index}) {
                     <div className="hcTypes">
                         {house.roof_Type && <span className="hcRoofType">Roof Type: {house.roof_Type}</span>}
                         {house.damage_types != null && house.damage_types.map((type) => (
-                            <span className="hcType">{type}</span>
+                            <span className="hcType">{type.charAt(0).toUpperCase() + type.slice(1)}</span>
                         ))}
                     </div>
 
