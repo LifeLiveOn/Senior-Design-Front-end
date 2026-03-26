@@ -1,10 +1,13 @@
 import { useState } from "react";
+import { generateReport, updateHouseReport } from "../utils";
 import { BACKEND_URL } from "../constants";
+import LoadingSpinner from "./LoadingSpinner";
 
 function ImageUploadModal({show, close, reloadCustomers, houseId}) {
     const [images, setImages] = useState([]);
     const [posting, setPosting] = useState(false);
     const [showRequired, setShowRequired] = useState(false);
+    const [status, setStatus] = useState("Uploading");
 
     const postCustomer = async () => {
         let passedCheck = false;
@@ -43,7 +46,17 @@ function ImageUploadModal({show, close, reloadCustomers, houseId}) {
                     console.log(data);
                 }
 
+                const modelFormData = new FormData();
+                modelFormData.append("mode", "normal");
+                modelFormData.append("tile_size", 560);
+                modelFormData.append("threshold", 0.5);
+
+                const houseData = await generateReport(modelFormData, houseId);
+                setStatus("Getting estimate");
+                await updateHouseReport(houseData, houseId);
+
                 setPosting(false);
+                setStatus("Uploading")
                 reloadCustomers();
                 close();
             }
@@ -51,6 +64,7 @@ function ImageUploadModal({show, close, reloadCustomers, houseId}) {
                 console.log("Error: ", err);
                 alert(err);
                 setPosting(false);
+                setStatus("Uploading")
             }
         }
         else {
@@ -82,7 +96,7 @@ function ImageUploadModal({show, close, reloadCustomers, houseId}) {
                         <div className="mdlButtonContainer">
                             <input type="file" onChange={setImagesInput} multiple></input>
                             { posting ? (
-                                <button disabled>Loading...</button>
+                                <LoadingSpinner text={status}></LoadingSpinner>
                             ) : (
                                 <button className="primary" onClick={() => postCustomer()}>Submit</button>
                             )}

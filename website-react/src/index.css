@@ -367,6 +367,8 @@ input[type="file"]::file-selector-button:active {
 }
 
 div.loading {
+  display: flex;
+  align-items: center;
   position: fixed;
   top: 50%;
   left: 50%;
@@ -445,7 +447,7 @@ div.loading {
   background-color: white;
   width: 230px;
   height: auto;
-  margin: 0 20px 20px 20px;
+  margin: 8px 20px 20px 20px;
   overflow: hidden;
   border: 1px solid lightgray;
   border-radius: 12px;
@@ -696,7 +698,6 @@ div.loading {
 
 .image-container {
   display: flex;
-  margin: 16px;
   justify-content: center;
   align-items: center;
 }
@@ -845,4 +846,45 @@ div.loading {
   display: flex;
   justify-content: right;
   padding: 4px 20px 4px 20px;
+}
+
+.button-container-report {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 32px;
+}
+
+.loading-container {
+  display: flex;
+  align-items: center;
+}
+
+.loading-spinner-red {
+  margin: 12px;
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(0, 0, 0, 0.1);
+  border-top-color: #D62311;
+  border-radius: 50%;
+  animation: loading 0.6s linear infinite;
+}
+.loading-spinner-large {
+  margin: 16px;
+  width: 40px;
+  height: 40px;
+  border: 3px solid rgba(0, 0, 0, 0.1);
+  border-top-color: #D62311;
+  border-radius: 50%;
+  animation: loading 0.6s linear infinite;
+}
+
+@keyframes loading {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(1turn);
+  }
 }

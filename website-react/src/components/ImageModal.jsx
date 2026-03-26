@@ -10,7 +10,7 @@ function ImageModal({show, close, imageSrc}) {
                     </div>
                     <div className="body">
                         <div className="image-container">
-                            <img width={512} height={512} src={imageSrc}></img>
+                            <img height={512} src={imageSrc}></img>
                         </div>
                     </div>
                 </div>

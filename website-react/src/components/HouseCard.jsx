@@ -26,19 +26,32 @@ function HouseCard({customerId, house, index}) {
 
                     <div className="hcTypes">
                         {house.roof_Type && <span className="hcRoofType">Roof Type: {house.roof_Type}</span>}
-                        <span className="hcType">Hail</span>
-                        <span className="hcType">Wind</span>
+                        {house.damage_types != null && house.damage_types.map((type) => (
+                            <span className="hcType">{type}</span>
+                        ))}
                     </div>
 
                     {/* stats */}
                     <div className="hcStats">
                         <div className="hcStat">
-                            <div className="hcStatValue">Moderate</div>
+                            <div className="hcStatValue">
+                                { house.severity >= 4 ? (
+                                    <p>Critical</p>
+                                ) : house.severity >= 2 ? (
+                                    <p>Moderate</p>
+                                ) : house.severity == 1 ? (
+                                    <p>Minimal</p>
+                                ) : house.severity == 0 ? (
+                                    <p>None</p>
+                                ) : (
+                                    <p>?</p>
+                                )}
+                            </div>
                             <div className="hcStatLabel">Damage</div>
                         </div>
 
                         <div className="hcStat">
-                            <div className="hcStatValue">{house.severity}/5</div>
+                            <div className="hcStatValue">{house.severity != null ? house.severity : "?"}/5</div>
                             <div className="hcStatLabel">Severity</div>
                         </div>
 

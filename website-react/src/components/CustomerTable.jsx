@@ -4,6 +4,7 @@ import NewCustomer from "./NewCustomer";
 import NewHouse from "./NewHouse";
 import { BACKEND_URL } from "../constants";
 import EditCustomer from "./EditCustomer";
+import LoadingSpinner from "./LoadingSpinner";
 
 function CustomerTable() {
     const [customers, setCustomers] = useState([]);
@@ -256,7 +257,8 @@ function CustomerTable() {
     else {
         return (
             <div className="loading">
-                <h1>Loading Customers...</h1>
+                <h1>Loading Customers</h1>
+                <LoadingSpinner type="large"></LoadingSpinner>
             </div>
         );
     }

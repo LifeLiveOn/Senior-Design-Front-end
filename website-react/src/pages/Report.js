@@ -6,6 +6,7 @@ import Badge from "../components/Badge";
 import ImageModal from "../components/ImageModal";
 import ImageUploadModal from "../components/ImageUploadModal";
 import EditHouse from "../components/EditHouse";
+import LoadingSpinner from "../components/LoadingSpinner";
 import { BACKEND_URL } from "../constants";
 
 
@@ -117,112 +118,118 @@ function App() {
                         </div>
                     </div>
                     <div className="button-container-house">
-                        <button className="secondary-subtle" onClick={() => setShowSettings(true)}>Model settings & report generation</button>
+                        {(house[0].severity != null) && (
+                            <button className="secondary-subtle" onClick={() => setShowSettings(true)}>Model settings & report generation</button>
+                        )}
                         <button className="secondary-subtle" onClick={() => setShowEdit(true)}>Edit house details</button>
                     </div>
                 </div>
-                <div className="subheader">
-                    <h2>Damage Summary</h2>
-                </div>
-                <div className="summary">
-                    <div className="content">
-                        <div className="header">
-                            <h3>Severity</h3>
-                            <Badge name={house[0].severity + "/5"} color={"tomato"}></Badge>
-                        </div>
-                        
-                        { house[0].severity >= 4 ? (
-                            <p>The roof has critical damage and needs immediate attention. </p>
-                        ) : house[0].severity >= 2 ? (
-                            <p>
-                                The roof has substantial damage needs repairs.
-                            </p>
-                        ) : (
-                            <p>
-                                The roof has minimal damage, but any amount of damage leaves the roof vulnerable.
-                            </p>
-                        )}
+                {(house[0].severity != null) ? (<>
+                    <div className="subheader">
+                        <h2>Damage Summary</h2>
                     </div>
-                    <div className="content">
-                        <div className="header">
-                            <h3>Type</h3>
-                            { windDamage && (
-                                <Badge name={"Wind"} color={"lightslategray"}></Badge>
-                            )}
-                            { hailDamage && (
-                                <Badge name={"Hail"} color={"skyblue"}></Badge>
+                    <div className="summary">
+                        <div className="content">
+                            <div className="header">
+                                <h3>Severity</h3>
+                                <Badge name={house[0].severity + "/5"} color={"tomato"}></Badge>
+                            </div>
+                            
+                            { house[0].severity >= 4 ? (
+                                <p>The roof has critical damage and needs immediate attention. </p>
+                            ) : house[0].severity >= 2 ? (
+                                <p>
+                                    The roof has substantial damage needs repairs.
+                                </p>
+                            ) : (
+                                <p>
+                                    The roof has minimal damage, but any amount of damage leaves the roof vulnerable.
+                                </p>
                             )}
                         </div>
-                        { (windDamage && hailDamage) ? (
-                            <>
+                        <div className="content">
+                            <div className="header">
+                                <h3>Type</h3>
+                                { windDamage && (
+                                    <Badge name={"Wind"} color={"lightslategray"}></Badge>
+                                )}
+                                { hailDamage && (
+                                    <Badge name={"Hail"} color={"skyblue"}></Badge>
+                                )}
+                            </div>
+                            { (windDamage && hailDamage) ? (
+                                <>
+                                    <p>
+                                        Wind can remove shingles and loosen connected ones.
+                                        High winds can cause granule loss and leave shingles more susceptible to the elements.
+                                        This may lead to accelerated ageing and degredation.
+                                    </p>
+                                    <p>
+                                        Hail can leave dents, cracks, holes, and loose shingles, leading to poor water flow and leaks.
+                                        If left unchecked, this can cause water damage and mold to form.
+                                    </p>
+                                </>
+                            ) : windDamage ? (
                                 <p>
                                     Wind can remove shingles and loosen connected ones.
                                     High winds can cause granule loss and leave shingles more susceptible to the elements.
                                     This may lead to accelerated ageing and degredation.
                                 </p>
+                            ) : hailDamage ? (
                                 <p>
                                     Hail can leave dents, cracks, holes, and loose shingles, leading to poor water flow and leaks.
                                     If left unchecked, this can cause water damage and mold to form.
                                 </p>
-                            </>
-                        ) : windDamage ? (
-                            <p>
-                                Wind can remove shingles and loosen connected ones.
-                                High winds can cause granule loss and leave shingles more susceptible to the elements.
-                                This may lead to accelerated ageing and degredation.
-                            </p>
-                        ) : hailDamage ? (
-                            <p>
-                                Hail can leave dents, cracks, holes, and loose shingles, leading to poor water flow and leaks.
-                                If left unchecked, this can cause water damage and mold to form.
-                            </p>
-                        ) : (
-                            <p>
-                                Could not be classified.
-                            </p>
-                        )}
-                    </div>
-                    <div className="content">
-                        <div className="header">
-                            <h3>Estimate</h3>
-                            <Badge name={"$" + house[0].price_estimate} color={"mediumseagreen"}></Badge>
+                            ) : (
+                                <p>
+                                    Could not be classified.
+                                </p>
+                            )}
                         </div>
-                        <p>This estimate has taken into account the total amount of damage along with the cost of asphalt shingles.</p>
+                        <div className="content">
+                            <div className="header">
+                                <h3>Estimate</h3>
+                                <Badge name={"$" + house[0].price_estimate} color={"mediumseagreen"}></Badge>
+                            </div>
+                            <p>This estimate has taken into account the total amount of damage along with the cost of asphalt shingles.</p>
+                        </div>
                     </div>
-                </div>
-                <div className="subheader">
-                    <div className="toggle-eye">
-                        <h2>Images</h2>
-                        <i
-                            className={showOriginalImg ? "fa-solid fa-eye-slash" : "fa-solid fa-eye"}
-                            onClick={() => setShowOriginalImg(!showOriginalImg)}
-                            title={showOriginalImg ? "Show Boxes" : "Hide Boxes"}
-                        />
+                    <div className="subheader">
+                        <div className="toggle-eye">
+                            <h2>Images</h2>
+                            <i
+                                className={showOriginalImg ? "fa-solid fa-eye-slash" : "fa-solid fa-eye"}
+                                onClick={() => setShowOriginalImg(!showOriginalImg)}
+                                title={showOriginalImg ? "Show Boxes" : "Hide Boxes"}
+                            />
+                        </div>
                     </div>
-                </div>
-                <div>
-                    
-                </div>
-                <div className="house-images">
-                    {
-                        house[0].images.map((image) => {return showOriginalImg ? (
-                            <img width={200} height={200} src={image.image_url} onClick={() => magnifyImage(image.image_url)}></img>
-                        ) :  (
-                            <img width={200} height={200} src={image.predicted_url != null ? image.predicted_url : image.image_url} onClick={() => magnifyImage(image.predicted_url)}></img>
-                        )})
-                    }
-                </div>
-                <br></br>
-                <div className="button-container">
-                    <button className="primary" onClick={() => setShowUpload(true)}>Upload</button>
-                </div>
+                    <div className="house-images">
+                        {
+                            house[0].images.map((image) => {return showOriginalImg ? (
+                                <img width={200} height={200} src={image.image_url} onClick={() => magnifyImage(image.image_url)}></img>
+                            ) : (
+                                <img width={200} height={200} src={image.predicted_url != null ? image.predicted_url : image.image_url} onClick={() => magnifyImage(image.predicted_url != null ? image.predicted_url : image.image_url)}></img>
+                            )})
+                        }
+                    </div>
+                    <br></br>
+                    <div className="button-container">
+                        <button className="primary" onClick={() => setShowUpload(true)}>Upload</button>
+                    </div>
+                </>) : (
+                    <div className="button-container-report">
+                        <button className="primary" onClick={() => setShowUpload(true)}>Upload Images</button>
+                    </div>
+                )}
             </>
         );
     }
     else {
         return (
             <div className="loading">
-                <h1>Loading Report...</h1>
+                <h1>Loading Report</h1>
+                <LoadingSpinner type="large"></LoadingSpinner>
             </div>
         );
     }

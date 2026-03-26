@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { BACKEND_URL } from "../constants";
+import LoadingSpinner from "./LoadingSpinner";
 
 function EditHouse({show, close, reloadCustomers, house}) {
     const [posting, setPosting] = useState(false);
@@ -97,7 +98,7 @@ function EditHouse({show, close, reloadCustomers, house}) {
                             </div>
                             <div className="mdlButtonContainer">
                                 { posting ? (
-                                    <button disabled>Loading...</button>
+                                    <LoadingSpinner text="Submitting"></LoadingSpinner>
                                 ) : (
                                     <button className="primary">Submit</button>
                                 )}
