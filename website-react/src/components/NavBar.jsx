@@ -12,7 +12,7 @@ function NavBar() {
                             < span className="title-over">Over</span>
                             <span className="title-watch">Watch</span>
                         </div>
-                        <span className="title-sub">by Steak Farm</span>
+                        <span className="title-sub">by SF</span>
                     </div>
                 </Link>
                 <ul>

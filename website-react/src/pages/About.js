@@ -45,10 +45,10 @@ function About() {
                         <h3>Severity</h3>
                         <p>Rated 0–5:</p>
                         <ul className="about-severity-list">
-                            <li><strong>0</strong> — No damage detected</li>
-                            <li><strong>1</strong> — Mild damage, monitor over time</li>
-                            <li><strong>2–3</strong> — Moderate damage, repairs recommended</li>
-                            <li><strong>4–5</strong> — Severe damage, immediate attention required</li>
+                            <li><strong>0</strong> - No damage detected</li>
+                            <li><strong>1</strong> - Mild damage, monitor over time</li>
+                            <li><strong>2–3</strong> - Moderate damage, repairs recommended</li>
+                            <li><strong>4–5</strong> - Severe damage, immediate attention required</li>
                         </ul>
                     </div>
                     <div className="about-card">
