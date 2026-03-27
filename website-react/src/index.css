@@ -902,6 +902,94 @@ div.loading {
   animation: loading 0.6s linear infinite;
 }
 
+.about-section {
+  margin-bottom: 40px;
+  padding-bottom: 40px;
+  border-bottom: 1px solid lightgray;
+}
+
+.about-section:last-child {
+  border-bottom: none;
+}
+
+.about-title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+  color: #403C3C;
+}
+
+.about-text {
+  font-size: 1rem;
+  color: gray;
+  line-height: 1.8;
+  max-width: 700px;
+}
+
+.about-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.about-step {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 1rem;
+  color: gray;
+}
+
+.about-step-num {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: #D62311;
+  color: white;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.about-cards {
+  display: flex;
+  gap: 20px;
+}
+
+.about-card {
+  flex: 1;
+  border: 1px solid lightgray;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 0 3px rgba(0,0,0,0.08);
+}
+
+.about-card h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: #403C3C;
+}
+
+.about-card p {
+  font-size: 0.9rem;
+  color: gray;
+  line-height: 1.6;
+}
+
+.about-severity-list {
+  list-style: none;
+  margin-top: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 0.9rem;
+  color: gray;
+  line-height: 1.6;
+}
+
 @keyframes loading {
   from {
     transform: rotate(0deg);

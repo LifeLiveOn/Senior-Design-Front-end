@@ -9,12 +9,12 @@ function ImageModal({show, close,  imageSrc}) {
                 <div className="modal-background"></div>
                 <div className="modal">
                     <div className="header">
-                        <button className="close" onClick={close}>&times;</button>
                         <i
                             className={`modal-eye-toggle fa-solid ${showOriginal ? "fa-eye-slash" : "fa-eye"}`}
                             onClick={() => setShowOriginal(!showOriginal)}
                             title={showOriginal ? "Show damage boxes" : "Hide boxes"}
                         />
+                        <button className="close" onClick={close}>&times;</button>
                     </div>
                     <div className="body">
                         <div className="image-container">
