@@ -82,7 +82,7 @@ function App() {
         return (
             <>
                 <ModelSettings show={showSettings} close={() => setShowSettings(false)} houseId={houseId} reloadCustomers={loadCustomers}></ModelSettings>
-                <ImageModal show={showImage} close={() => setShowImage(false)} imageSrc={imageSrc}></ImageModal>
+                <ImageModal show={showImage} close={() => setShowImage(false)} imageSrc={imageSrc} startOriginal={showOriginalImg}></ImageModal>
                 <ImageUploadModal show={showUpload} close={() => setShowUpload(false)} reloadCustomers={loadCustomers} houseId={houseId}></ImageUploadModal>
                 <EditHouse show={showEdit} close={() => setShowEdit(false)} reloadCustomers={loadCustomers} house={house[0]}></EditHouse>
                 <div className="breadcrumb">
@@ -208,11 +208,16 @@ function App() {
                     </div>
                     <div className="house-images">
                         {
-                            house[0].images.map((image) => {return showOriginalImg ? (
-                                <img width={200} height={200} src={image.image_url} onClick={() => magnifyImage(image.image_url, image.image_url)}></img>
-                            ) : (
-                                <img width={200} height={200} src={image.predicted_url != null ? image.predicted_url : image.image_url} onClick={() => magnifyImage(image.image_url, image.predicted_url != null ? image.predicted_url : image.image_url)}></img>
-                            )})
+                            house[0].images.map((image) => {
+                                const predicted = image.predicted_url != null ? image.predicted_url : image.image_url;
+                                return showOriginalImg ? (
+                                    <img width={200} height={200} src={image.image_url} 
+                                        onClick={() => magnifyImage(image.image_url, predicted)}></img>
+                                ) : (
+                                    <img width={200} height={200} src={predicted} 
+                                        onClick={() => magnifyImage(image.image_url, predicted)}></img>
+                                )
+                            })
                         }
                     </div>
                     <br></br>

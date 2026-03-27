@@ -1,7 +1,7 @@
 import { useState } from "react";
 
-function ImageModal({show, close,  imageSrc}) {
-    const [showOriginal, setShowOriginal] = useState(false);
+function ImageModal({show, close,  imageSrc, startOriginal}) {
+    const [showOriginal, setShowOriginal] = useState(startOriginal);
     if (show) {
         const src = showOriginal ? imageSrc.original : imageSrc.predicted;
         return (
