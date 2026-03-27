@@ -326,6 +326,7 @@ input[type="file"]::file-selector-button:active {
 
 .page-header {
   margin-bottom: 8px;
+  margin-top:24px;
 }
 .page-header h1 {
   margin: 0 0 8px 0;
