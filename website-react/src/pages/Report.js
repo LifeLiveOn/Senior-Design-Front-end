@@ -89,7 +89,7 @@ function App() {
                     <div className="breadcrumb-inner">
                         <Link to="/customers">Customers </Link>
                         <span>&gt;</span>
-                        <span> Report</span>
+                        <span>Report</span>
                     </div>
                 </div>
                 <div className="page-header">

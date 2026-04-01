@@ -38,7 +38,11 @@ function ModelSettings({show, close, houseId, roofType, reloadCustomers}) {
                 <div className="modal">
                     <div className="header">
                         <h2>Model Settings</h2>
-                        <button className="close" onClick={() => {close(); setSliderValue(DEFAULT_SLIDER_VALUE);}}>&times;</button>
+                        { posting ? (
+                            <LoadingSpinner type="white"></LoadingSpinner>
+                        ) : (
+                            <button className="close" onClick={() => {close(); setSliderValue(DEFAULT_SLIDER_VALUE);}}>&times;</button>
+                        )}
                     </div>
                     <div className="body">
                         <form onSubmit={submitForm}>

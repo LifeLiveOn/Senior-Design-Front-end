@@ -53,7 +53,11 @@ function EditCustomer({show, close, reloadCustomers, customer}) {
                 <div className="modal">
                     <div className="header">
                         <h2>Edit Customer</h2>
-                        <button className="close" onClick={close}>&times;</button>
+                        { posting ? (
+                            <LoadingSpinner type="white"></LoadingSpinner>
+                        ) : (
+                            <button className="close" onClick={close}>&times;</button>
+                        )}
                     </div>
                     <div className="body">
                         <form onSubmit={submitForm}>

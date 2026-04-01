@@ -91,7 +91,11 @@ function ImageUploadModal({show, close, reloadCustomers, houseId, roofType}) {
                 <div className="modal">
                     <div className="header">
                         <h2>Upload</h2>
-                        <button className="close" onClick={() => {close(); reset();}}>&times;</button>
+                        { posting ? (
+                            <LoadingSpinner type="white"></LoadingSpinner>
+                        ) : (
+                            <button className="close" onClick={() => {close(); reset();}}>&times;</button>
+                        )}
                     </div>
                     <div className="body">
                         <div className="mdlButtonContainer">

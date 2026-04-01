@@ -39,7 +39,7 @@ function CustomerTable() {
             setCustomers(data);
             setFilteredCustomers(data);
             setCustomersLoaded(true);
-            setPageCount(Math.ceil(data.length / 7))
+            setPageCount(Math.ceil(data.length / customersPerPage))
         }
         catch (err) {
             console.log("Error: ", err);
@@ -164,9 +164,11 @@ function CustomerTable() {
 
     const changePage = (increment) => {
         let number = pageNumber + increment;
+        
         if (number > 0 && number <= pageCount) {
             setPageNumber(number);
         }
+
     }
 
     // Load Customers
@@ -247,7 +249,7 @@ function CustomerTable() {
                 </table>
                 <div className="page-nav">
                     <button className="icon" onClick={() => changePage(-1)}>◀</button>
-                    <p>{pageNumber}</p>
+                    <p>{pageNumber}/{pageCount}</p>
                     <button className="icon" onClick={() => changePage(1)}>▶</button>
                 </div>
             </>
