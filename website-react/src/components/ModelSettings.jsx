@@ -3,7 +3,7 @@ import { generateReport, updateHouseReport } from "../utils";
 import { BACKEND_URL } from "../constants";
 import LoadingSpinner from "./LoadingSpinner";
 
-function ModelSettings({show, close, houseId, reloadCustomers}) {
+function ModelSettings({show, close, houseId, roofType, reloadCustomers}) {
     const DEFAULT_SLIDER_VALUE = 5;
     const [sliderValue, setSliderValue] = useState(DEFAULT_SLIDER_VALUE);
     const [posting, setPosting] = useState(false);
@@ -22,7 +22,7 @@ function ModelSettings({show, close, houseId, reloadCustomers}) {
         
         const houseData = await generateReport(modelFormData, houseId);
         setStatus("Getting estimate")
-        await updateHouseReport(houseData, houseId);
+        await updateHouseReport(houseData, houseId, roofType);
 
         setSliderValue(DEFAULT_SLIDER_VALUE);
         setPosting(false);

@@ -1,27 +1,30 @@
 import { BACKEND_URL } from "./constants";
+import roofTypeJson from "./roofType.json";
 
-export async function updateHouseReport(data, houseId) {
+export async function updateHouseReport(data, houseId, roofType) {
     // Estimations ----------------------------------------------------------------
     const viewingAngle = 33.0;
     const imageWidth = 640.0;
     const distance = 16.0;
-    const rooftype = "Asphalt Shingles";
 
     const footToPixel = (2 * distance * Math.tan(viewingAngle / 2)) / imageWidth;
 
     // Material cost
-    let materialCostPerSqrFt = 1;
-    let labourCostPerSqrFt = 1;
-    if (rooftype === "Asphalt Shingles")
-    {
-        materialCostPerSqrFt = 1.1;
-        labourCostPerSqrFt = 2.75;
-    }
-    else if (rooftype === "Metal")
-    {
-        materialCostPerSqrFt = 11;
-        labourCostPerSqrFt = 6.00;
-    }
+    const material = roofTypeJson.find(mat => mat.name === roofType)
+
+    let materialCostPerSqrFt = material ? material.material_cost : 1.00;
+    let labourCostPerSqrFt = material ? material.labor_cost : 1.00;
+    console.log(materialCostPerSqrFt, labourCostPerSqrFt);
+    // if (rooftype === "Asphalt Shingles")
+    // {
+    //     materialCostPerSqrFt = 1.1;
+    //     labourCostPerSqrFt = 2.75;
+    // }
+    // else if (rooftype === "Metal")
+    // {
+    //     materialCostPerSqrFt = 11;
+    //     labourCostPerSqrFt = 6.00;
+    // }
 
     let area = 0;
     let damageTypes = [];

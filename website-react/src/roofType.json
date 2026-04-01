@@ -1,0 +1,29 @@
+[
+    {
+        "name": "Asphalt Shingles",
+        "material_cost": 1.10,
+        "labor_cost": 1.50
+    },
+    {
+        "name": "Slate Shingles",
+        "material_cost": 20.00,
+        "labor_cost": 9.00
+    },
+    {
+        "name": "Metal",
+        "material_cost": 11.00,
+        "labor_cost": 6.00
+    },
+    {
+        "name": "Wood",
+        "material_cost": 10.50,
+        "labor_cost": 6.00
+    },
+    {
+        "name": "Other",
+        "material_cost": 1.00,
+        "labor_cost": 1.00
+    }
+    
+]
+

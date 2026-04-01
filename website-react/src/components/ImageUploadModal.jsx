@@ -3,7 +3,7 @@ import { generateReport, updateHouseReport } from "../utils";
 import { BACKEND_URL } from "../constants";
 import LoadingSpinner from "./LoadingSpinner";
 
-function ImageUploadModal({show, close, reloadCustomers, houseId}) {
+function ImageUploadModal({show, close, reloadCustomers, houseId, roofType}) {
     const [images, setImages] = useState([]);
     const [posting, setPosting] = useState(false);
     const [showRequired, setShowRequired] = useState(false);
@@ -45,6 +45,7 @@ function ImageUploadModal({show, close, reloadCustomers, houseId}) {
                     
                     console.log(data);
                 }
+                setStatus("Generating");
 
                 const modelFormData = new FormData();
                 modelFormData.append("mode", "normal");
@@ -53,7 +54,7 @@ function ImageUploadModal({show, close, reloadCustomers, houseId}) {
 
                 const houseData = await generateReport(modelFormData, houseId);
                 setStatus("Getting estimate");
-                await updateHouseReport(houseData, houseId);
+                await updateHouseReport(houseData, houseId, roofType);
 
                 setPosting(false);
                 setStatus("Uploading")

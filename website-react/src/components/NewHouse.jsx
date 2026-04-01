@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { BACKEND_URL } from "../constants";
+import roofTypeJson from "../roofType.json";
 import LoadingSpinner from "./LoadingSpinner";
 
 function NewHouse({show, close, reloadCustomers, customerId}) {
@@ -59,7 +60,7 @@ function NewHouse({show, close, reloadCustomers, customerId}) {
             alert(err);
         }
     }
-
+    
     if (show) {
         return (
             <>
@@ -83,11 +84,9 @@ function NewHouse({show, close, reloadCustomers, customerId}) {
                             <div className="input-container">
                                 <h4>Roof Type:</h4>
                                 <select name="roof_type" required>
-                                    <option value={"Asphalt Shingles"}>Asphalt Shingles</option>
-                                    <option value={"Slate Shingles"}>Slate Shingles</option>
-                                    <option value={"Metal"}>Metal</option>
-                                    <option value={"Wood"}>Wood</option>
-                                    <option value={"Other"}>Other</option>
+                                {roofTypeJson.map((material) => (
+                                    <option value={material.name}>{material.name}</option>
+                                ))}
                                 </select>
                             </div>
                             <div className="input-container">
