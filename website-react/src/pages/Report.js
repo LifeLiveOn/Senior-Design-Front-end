@@ -81,10 +81,9 @@ function App() {
 
         return (
             <>
-            
-                <ModelSettings show={showSettings} close={() => setShowSettings(false)} houseId={houseId} reloadCustomers={loadCustomers}></ModelSettings>
+                <ModelSettings show={showSettings} close={() => setShowSettings(false)} houseId={houseId} roofType={house[0].roof_type} reloadCustomers={loadCustomers}></ModelSettings>
                 <ImageModal show={showImage} close={() => setShowImage(false)} imageSrc={imageSrc} startOriginal={showOriginalImg}></ImageModal>
-                <ImageUploadModal show={showUpload} close={() => setShowUpload(false)} reloadCustomers={loadCustomers} houseId={houseId}></ImageUploadModal>
+                <ImageUploadModal show={showUpload} close={() => setShowUpload(false)} reloadCustomers={loadCustomers} houseId={houseId} roofType={house[0].roof_type}></ImageUploadModal>
                 <EditHouse show={showEdit} close={() => setShowEdit(false)} reloadCustomers={loadCustomers} house={house[0]}></EditHouse>
                 <div className="breadcrumb">
                     <div className="breadcrumb-inner">
