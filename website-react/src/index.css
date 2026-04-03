@@ -575,6 +575,7 @@ div.loading {
   display: flex;
   gap: 8px;
   flex-wrap: nowrap;
+  min-height: 32px;
 }
 
 
