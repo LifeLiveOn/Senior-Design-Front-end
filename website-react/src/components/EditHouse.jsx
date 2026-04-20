@@ -2,13 +2,17 @@ import { useState } from "react";
 import { BACKEND_URL } from "../constants";
 import roofTypeJson from "../roofType.json";
 import LoadingSpinner from "./LoadingSpinner";
+import { generateReport, updateHouseReport } from "../utils";
 
 function EditHouse({show, close, reloadCustomers, house}) {
     const [posting, setPosting] = useState(false);
+    const [status, setStatus] = useState("Submitting");
 
     const postHouse = async (formData) => {
         try {
             setPosting(true);
+
+            const roofTypeChanged = formData.get("roof_type") !== house.roof_type;
 
             const res = await fetch(BACKEND_URL + "/api/v1/houses/" + house.id + "/", {
                 method: "PATCH",
@@ -20,9 +24,25 @@ function EditHouse({show, close, reloadCustomers, house}) {
                 throw new Error(res.status);
 
             const data = await res.json();
+
+            if (roofTypeChanged)
+            {
+                setStatus("Generating");
+                
+                const modelFormData = new FormData();
+                modelFormData.append("mode", "normal");
+                modelFormData.append("tile_size", 560);
+                modelFormData.append("threshold", 0.5);
+
+                const houseData = await generateReport(modelFormData, house.id);
+                setStatus("Getting estimate");
+                await updateHouseReport(houseData, house.id, formData.get("roof_type"));
+
+            }
             
             console.log(data);
             setPosting(false);
+            setStatus("Submitting");
             reloadCustomers();
             close();
         }
@@ -101,7 +121,7 @@ function EditHouse({show, close, reloadCustomers, house}) {
                             </div>
                             <div className="mdlButtonContainer">
                                 { posting ? (
-                                    <LoadingSpinner text="Submitting"></LoadingSpinner>
+                                    <LoadingSpinner text={status}></LoadingSpinner>
                                 ) : (
                                     <button className="primary">Submit</button>
                                 )}

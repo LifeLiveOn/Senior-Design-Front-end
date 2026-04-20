@@ -14,17 +14,6 @@ export async function updateHouseReport(data, houseId, roofType) {
 
     let materialCostPerSqrFt = material ? material.material_cost : 1.00;
     let labourCostPerSqrFt = material ? material.labor_cost : 1.00;
-    console.log(materialCostPerSqrFt, labourCostPerSqrFt);
-    // if (rooftype === "Asphalt Shingles")
-    // {
-    //     materialCostPerSqrFt = 1.1;
-    //     labourCostPerSqrFt = 2.75;
-    // }
-    // else if (rooftype === "Metal")
-    // {
-    //     materialCostPerSqrFt = 11;
-    //     labourCostPerSqrFt = 6.00;
-    // }
 
     let area = 0;
     let damageTypes = [];

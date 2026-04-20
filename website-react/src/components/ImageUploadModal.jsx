@@ -57,7 +57,7 @@ function ImageUploadModal({show, close, reloadCustomers, houseId, roofType}) {
                 await updateHouseReport(houseData, houseId, roofType);
 
                 setPosting(false);
-                setStatus("Uploading")
+                setStatus("Uploading");
                 reloadCustomers();
                 close();
             }
