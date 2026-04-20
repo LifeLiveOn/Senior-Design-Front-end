@@ -20,10 +20,10 @@ npm start dev
 5. Once it starts, it should automatically open in your browser
     - Both the local and network addresses should show up in the terminal
     - Ex:
-```
-Local:            http://localhost:8080
-On Your Network:  http://10.111.111.111:8080
-```
+    ```
+    Local:            http://localhost:8080
+    On Your Network:  http://10.111.111.111:8080
+    ```
     - To access the website from another device, use the **On Your Network** address
 6. Stopping the website
     - In the terminal, press **ctrl + c**
