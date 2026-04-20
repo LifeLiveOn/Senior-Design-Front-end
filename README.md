@@ -12,18 +12,18 @@ This is where the agent can add and edit customers and their houses. A roof dama
     - Set **PORT** equalt to your desired port (Default: 8080)
 3. Make sure you have Node.js installed ([nodejs.org](https://nodejs.org/en))
 4. In the top directory of the project `SENIOR-DESIGN-FRONT-END`, run the following commands in the terminal:
-```bash
-cd website-react
-npm install
-npm start dev
-```
+    ```bash
+    cd website-react
+    npm install
+    npm start dev
+    ```
 5. Once it starts, it should automatically open in your browser
     - Both the local and network addresses should show up in the terminal
     - Ex:
-    ```
-    Local:            http://localhost:8080
-    On Your Network:  http://10.111.111.111:8080
-    ```
+        ```
+        Local:            http://localhost:8080
+        On Your Network:  http://10.111.111.111:8080
+        ```
     - To access the website from another device, use the **On Your Network** address
 6. Stopping the website
     - In the terminal, press **ctrl + c**
