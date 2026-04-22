@@ -1,12 +1,30 @@
 # OverWatch (front-end)
 
-This is where the agent can add and edit customers and their houses. A roof damage report can be view under each house once the roof images have been uploaded.
+The goal of OverWatch is to allow insurance companies to diagnose roof damage without human interaction. This repository containts the website in which insurance agents can add and edit customers, houses, and view the detailed roof damage report generated using machine learning.
 
-# Run the front-end locally
+# Website Layout
+
+## Login Page
+
+This page only contains the login button, which the agent will use to sign in to their google account.
+
+## Customer Page
+
+Once the agent is logged in, they will be presented with the customer page. This page contains the search bar, customer table, and the button to add customers.
+
+### Customer Table
+
+Lists every customers name, email, number, and the date they were added. To keep things simpole, the table is divided into pages. You can use the arrows under the table to navigate through them. You can also click on one of the column headers to sort the table by that column. 
+Click on a customer to reveal their container. Here, you can view their house cards, add new ones, and edit customer details using the "Edit customer details" button at the top right of the container. Each house card diaplays the information nessesary to identify it. When you click on a house card, it will take you to the **Report Page** to view the detailed roof damage report.
+
+# Instructions
+
+Here are step by step instrucations on how to run the website locally. For the front-end to work properly, the back-end also needs to be running. If you don't have that set up already, visit [github.com/LifeLiveOn/Senior-Design](https://github.com/LifeLiveOn/Senior-Design).
+
 1. Change the back-end link to it's local address
     - Navigate to `website-react/src/constants.js`
     - Set **BACKEND-URL** equal to **"http://localhost:{PORT}"**
-    - Change **{PORT}** to the port you chose for the backend (Default: 8000)
+    - Replace **{PORT}** with the port number you chose for the backend (Default: 8000)
 2. Set the front-end port
     - Navigate to `website-react/.env`
     - Set **PORT** equalt to your desired port (Default: 8080)
