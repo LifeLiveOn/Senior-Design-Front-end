@@ -2,7 +2,7 @@
 
 The goal of OverWatch is to allow insurance companies to diagnose roof damage without human interaction. This repository containts the website in which insurance agents can add and edit customers, houses, and view the detailed roof damage report generated using machine learning.
 
-# Website Layout
+## Website Layout
 
 ### Login Page
 
@@ -31,7 +31,7 @@ The report page is where tha agent can view the roof damage report for the selec
 - **Model Settings:** Under the customer/house information, you'll find a button labled "Model settings & report generation". When clicked, it will bring up setting that can be tweaked to adjust the machine learning model. After you make some adjustments, you can click the "Generate" button to run the image through the model again with the new settings.
 
 
-# Instructions
+## Instructions
 
 Here are step by step instrucations on how to run the website locally. For the front-end to work properly, the back-end also needs to be running. If you don't have that set up already, visit [github.com/LifeLiveOn/Senior-Design](https://github.com/LifeLiveOn/Senior-Design).
 
