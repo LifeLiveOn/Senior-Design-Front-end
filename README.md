@@ -4,18 +4,32 @@ The goal of OverWatch is to allow insurance companies to diagnose roof damage wi
 
 # Website Layout
 
-## Login Page
+### Login Page
 
 This page only contains the login button, which the agent will use to sign in to their google account.
 
-## Customer Page
+### Customer Page
 
-Once the agent is logged in, they will be presented with the customer page. This page contains the search bar, customer table, and the button to add customers.
+Once the agent is logged in, they will be presented with the customer page. This page contains the customer table, search bar, and the button to add customers.
 
-### Customer Table
+- **Customer Table:** Lists every customers name, email, number, and the date they were added. To keep things simpole, the table is divided into pages. You can use the arrows under the table to navigate through them. You can also click on one of the column headers to sort the table by that column. Clicking on a customer reveals their container. Here, you can view their house cards, add new ones, and edit customer details using the "Edit customer details" button at the top right of the container. Each house card diaplays the information nessesary to identify it. When you click on a house card, it will take you to the **Report Page** to view the detailed roof damage report.
 
-Lists every customers name, email, number, and the date they were added. To keep things simpole, the table is divided into pages. You can use the arrows under the table to navigate through them. You can also click on one of the column headers to sort the table by that column. 
-Click on a customer to reveal their container. Here, you can view their house cards, add new ones, and edit customer details using the "Edit customer details" button at the top right of the container. Each house card diaplays the information nessesary to identify it. When you click on a house card, it will take you to the **Report Page** to view the detailed roof damage report.
+- **Search Bar:** This is were you can search for customers by name, email, or phone number. Use the dropdown to select the search type. Once you type in the search bar, click the search button to filter the customer table.
+
+- **Add Customer Button:** Clicking this button will bring up the "Add Customer" popup. Here, you can enter in the new customers information and add it to your customer table.
+
+### Report Page
+
+The report page is where tha agent can view the roof damage report for the selected house. This page contains the customer and house information, damage summary, an upload section, and model settings.
+
+- **Customer/House Information:** Displays all of the relevant customer and house information. To edit the house information, click on the "Edit house details" button.
+
+- **Damage Summary:** This section is split up into three boxes: severity, damage type, and estimate. The severity box tells you how severe the damage is on a scale from 0 to 5 (5 being the worst), along with a short description. The damage type box identifies and describes each type of damage. The estimate box shows the cost of repair based on the roof type and the total amount of damage.
+
+- **Upload Section:** Here, you can view all upload images aswell as add them. Once you upload an image, it will run it through the model and update the report.
+
+- **Model Settings:** Under the customer/house information, you'll find a button labled "Model settings & report generation". When clicked, it will bring up setting that can be tweaked to adjust the machine learning model. After you make some adjustments, you can click the "Generate" button to run the image through the model again with the new settings.
+
 
 # Instructions
 
