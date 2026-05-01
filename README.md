@@ -59,4 +59,32 @@ Here are step by step instrucations on how to run the website locally. For the f
 6. Stopping the website
     - In the terminal, press **ctrl + c**
     - You should see `Terminate batch job (Y/N)?`
-    - type **y**, the press **enter** to terminate
+    - type **y**, the press **enter** to terminate__
+
+
+## Tech Stack
+ 
+- **React** — JavaScript library used to build the UI with reusable components and pages
+- **React Router DOM** — handles navigation between pages (Customer Page, Report Page, About Page) without reloading the browser
+- **CSS** — used for all styling across the app
+- **Vite** — development server and build tool (runs the app locally with `npm run dev`)
+- **Font Awesome** — icon library used for UI icons (e.g. the image toggle eye icon on the Report Page)
+---
+ 
+## External Services & API
+ 
+The frontend communicates with the backend REST API to send and receive data. No API keys or secrets are stored in the frontend — all authentication is handled through a session cookie set by the backend after login.
+ 
+Here is what the frontend talks to the backend for:
+ 
+- **Get all customers** — loads the customer list on the Customer Page
+- **Create a customer** — adds a new customer via the "Add Customer" popup
+- **Update a customer** — edits an existing customer's details
+- **Create a house** — adds a new property under a customer
+- **Update a house** — edits an existing property's details
+- **Upload drone images** — sends images to the backend one at a time, attached to a specific house
+- **Run the AI model** — triggers the damage detection model on a house's uploaded images
+- **Update the damage report** — saves the model's results (severity, damage types, cost estimate) back to the house record
+All API calls use the `BACKEND_URL` value defined in `src/constants.js`. To switch environments (local vs deployed), only that one value needs to change.
+ 
+---
